@@ -1,19 +1,49 @@
 ![ruchella_banner](https://github.com/user-attachments/assets/fadf09d7-ecf5-47cc-9acf-fbf489608e38)
-<h1 align="center">Hi, Welcome to Me 🌊</h1>
-<h3 align="center">I am Ruchella, I work at the intersection of datascience and neuroscience 🧠📊</h3>
-<p>I am a PhD Candidate at Leiden University and CTO of Axite B.V.</p>
+# Structured CV: My Career in Code
 
-<p><img align="right" src="https://github-readme-stats.vercel.app/api/top-langs?username=rushkock&show_icons=true&locale=en&layout=compact" alt="rushkock" /></p>
+This Python package was developed as a way to showcase my professional and technical skills through a structured, object-oriented framework. 
+The idea behind this project is to "show, not tell" — rather than simply describing my experience, I have built a tool that models my CV as a collection of Python objects, demonstrating my ability to design and implement such solutions.
 
-- ⚙ I’m currently working on *Neural Oscillations in real world behavior*
+Although initially created to represent my own background, the package has been designed with flexibility in mind. 
+The classes are generic enough that they can be easily adapted by others to model their own professional profiles. 
 
-- 🌱 I’m currently learning *FastAPI, AWS, Kotlin*
+The package provides an efficient way to structure and organize key aspects of a CV, including education, work experience, projects, and publications, and allows for conversion between multiple formats such as CSV, Markdown, and JSON.
 
-- 💬 Ask me about *Timeseries data analysis*
+## Getting Started
+### Installation
+You can clone this repository or  you can install the package directly using:
 
-![Static Badge](https://img.shields.io/badge/Me-v26.8.29-yellow
-![Static Badge](https://img.shields.io/badge/Kids-0human+1cat-green")
+```bash
+pip install git+https://github.com/rushkock/rushkock
+``` 
 
+## Key Features
+You can create objects containing information about:
+- Education: Degree programs, universities, GPA, selected coursework, and thesis projects.
+- Professional Experience: Overview of industry positions, internships, and academic roles.
+- Skills: Categorized into hard and soft skills for easy reference.
+- Projects: Independent and collaborative projects.
+- Publications: List of peer-reviewed articles and preprints.
+- Formatted Output: Includes terminal-friendly display and export to JSON or Markdown formats.
 
-<h3 align="left">Languages and Tools:</h3>
-<p align="left"> <a href="https://azure.microsoft.com/en-in/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/microsoft_azure/microsoft_azure-icon.svg" alt="azure" width="40" height="40"/> </a> <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a> <a href="https://d3js.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/d3js/d3js-original.svg" alt="d3js" width="40" height="40"/> </a> <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/> </a> <a href="https://www.linux.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="40" height="40"/> </a> <a href="https://www.mathworks.com/" target="_blank" rel="noreferrer"> <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Matlab_Logo.png" alt="matlab" width="40" height="40"/> </a> <a href="https://pandas.pydata.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/2ae2a900d2f041da66e950e4d48052658d850630/icons/pandas/pandas-original.svg" alt="pandas" width="40" height="40"/> </a> <a href="https://www.postgresql.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original-wordmark.svg" alt="postgresql" width="40" height="40"/> </a> <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a> <a href="https://scikit-learn.org/" target="_blank" rel="noreferrer"> <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" alt="scikit_learn" width="40" height="40"/> </a> <a href="https://seaborn.pydata.org/" target="_blank" rel="noreferrer"> <img src="https://seaborn.pydata.org/_images/logo-mark-lightbg.svg" alt="seaborn" width="40" height="40"/> </a> <a href="https://www.tensorflow.org" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/tensorflow/tensorflow-icon.svg" alt="tensorflow" width="40" height="40"/> </a> </p>
+## Example Usage
+### Python 
+```python
+from cv_objects import Course,Project,Skills
+courses = [Course('Applied Cognitive Psychology'), Course('Cognitive Neuroscience'), Course('Clinical Neuropsychology'), Course('Artificial Intelligence'),Course('Minor in Programming')]
+
+thesis_bsc = Project(start_date=date(2019, 3, 1),
+                 end_date=date(2019, 7, 1),
+                 company="Leiden University",
+                 skills=[Skills("Statistics", 1), Skills("Permutation Testing",1), Skills('Simulations',1)],
+                 project_title="Violation of homogeneity of variances: A comparison between Welch’s t-test and the permutation test",
+                 project_link="http://rushkock-env.eba-yi6rkpue.us-east-1.elasticbeanstalk.com/thesis")
+```
+### Through the command line
+To see my full CV in your command line you can run: 
+```bash 
+python3 csv_to_objects.py
+```
+
+# Author(s):
+:octocat: Ruchella Kock

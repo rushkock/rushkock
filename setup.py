@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name='ruchalla_resume',
+    name='ruchella_resume',
     version='0.0.1',    
     description='An overdone installable package that displays my CV',
     url='https://github.com/rushkock/rushkock',
@@ -9,10 +9,7 @@ setup(
     license='BSD 2-clause',
     python_requires=">=3.10",
     packages=['rushkock'],
-    install_requires=['dateutil',
-                      'numpy',                     
-                      ],
-
+    install_requires=['numpy'],
     classifiers=[
         'Programming Language :: Python :: 3.10',
         'Intended Audience :: Recruiters',

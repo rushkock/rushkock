@@ -16,7 +16,7 @@ def _():
         return time_since_birth
     time_since_birth = calculate_birthday(birthday)
     version = f"{time_since_birth.years}.{time_since_birth.months}.{time_since_birth.days}-yellow"
-    return birthday, date, datetime, relativedelta, version
+    return birthday, date, version
 
 
 @app.cell
@@ -32,208 +32,7 @@ def _(version):
 
 @app.cell
 def _():
-    from typing import List
-    from abc import ABC, abstractmethod
-    return ABC, List, abstractmethod
-
-
-@app.cell
-def _(ABC, List, abstractmethod, date, datetime, relativedelta):
-    class Skills:
-        def __init__(self, skill:str,type:int) -> None:
-            self.skill = skill 
-            self.type = type 
-        def __str__(self):
-            type= 'Soft-skill' if self.type == 0 else 'Hard-skill' 
-            return f"{self.skill} ({type})"
-
-    class Experience(ABC):
-        """ Collect any professional experiences including internships, employment or projects
-            start_date = Start date 
-            end_date = End date, if None then still ongoing
-            title = Function e.g. Developer
-            company = Associated company  
-            skills = Most relevant skills acquired with the experience
-            description = Description of the main tasks performed
-        """
-        def __init__(self, start_date:date, end_date:date=None,title:str=None, company:str=None, skills:List[Skills]=None, description:str=None,print_order:int=None) -> None:
-            self.start_date = start_date
-            self.end_date = end_date
-            self.title = title
-            self.company = company
-            self.skills = skills   
-            self.description = description
-            self.print_order = print_order
-        
-        def reorder_skills(self):
-            ordered_skills = self.skills
-            if len(ordered_skills)>1:
-                ordered_skills = sorted(ordered_skills,key=lambda s: s.type)
-            return ordered_skills
-        
-        def print_experiences(self):
-            date_range = f"{self.start_date.strftime('%b %Y')} – "
-            date_range += self.end_date.strftime('%b %Y') if self.end_date else "Present"
-            exp_str = ''
-            if self.description:
-                exp_str = f"{self.title}  "
-            exp_str += f"({date_range})"
-            if self.description:
-                exp_str += f"\n{self.description}"
-            if self.skills:
-                exp_str += "\nRelated skills:"
-                ordered_skills = self.reorder_skills()
-                for skill in ordered_skills:
-                    exp_str += f"\n    - {skill}"  
-            return exp_str
-                
-        @abstractmethod  
-        def __str__(self):
-            pass  
-
-    class Job(Experience):    
-        def __init__(self, title:str, start_date:date, end_date:date=None, company:str=None, skills:List[Skills]=None, description:str=None) -> None:
-            super().__init__(start_date,end_date,title, company, skills, description,print_order=0)
-        def __str__(self):  
-            str_top_level = '💼' + Experience.print_experiences(self)        
-            return str_top_level
-
-    class Project(Experience):
-        def __init__(self, start_date:date, title:str=None, end_date:date=None, company:str=None, skills:List[Skills]=None, description:str=None, project_title:str=None,project_link:str=None) -> None:
-            super().__init__(start_date,end_date,title, company, skills, description,print_order=3)
-            # specific title of the project
-            self.project_title = project_title
-            self.project_link = project_link
-        
-        def __str__(self): 
-            str_top_level = '💻' 
-            if self.project_title:
-                str_top_level += f"Title:{self.project_title}  "
-            str_top_level += Experience.print_experiences(self)        
-            return str_top_level
-
-    class Course:
-        def __init__(self,course_name:str,description:str=None) -> None:
-            self.course_name = course_name
-            self.description = description
-        def __str__(self):
-            course_str = f"{self.course_name}"
-            if self.description:
-                course_str += f":\n {self.description}"
-            return course_str
-
-    class Education:
-        def __init__(self, degree_level:str, start_date:date, university_name:str=None, study_name:str=None, end_date:date=None, gpa:float=None,thesis:Project=None, courses:List[Course]=None) -> None: 
-            self.degree_level = degree_level
-            self.university_name = university_name
-            self.study_name = study_name
-            self.start_date = start_date
-            self.end_date = end_date
-            self.gpa = gpa
-            self.courses = courses
-            self.thesis = thesis
-        def __str__(self):
-            edu_str = f"🎓{self.degree_level}"
-            if self.start_date and self.end_date:
-                edu_str += f" ({self.start_date.strftime('%Y')} - {self.end_date.strftime('%Y')})"
-            if self.study_name:
-                edu_str += f"\n{self.study_name}"
-            if self.university_name:
-                edu_str += f"\n{self.university_name}"       
-            if self.gpa:
-                edu_str += f"\nGPA: {self.gpa}"
-            if self.courses:
-                edu_str += "\nSpecializations/Electives:"
-                for course in self.courses:
-                    edu_str += f"\n    {course}"
-            if self.thesis:
-                edu_str += f"\nThesis:\n{self.thesis}" 
-            return edu_str
-
-    class Internship(Experience):
-        def __init__(self, title:str, start_date:date, associated_study:Education, end_date:date=None, company:str=None, skills:List[Skills]=None, description:str=None) -> None:
-            super().__init__(start_date,end_date,title, company, skills, description,print_order=2)
-            # study associated with the internship
-            self.associated_study = associated_study
-        
-        def __str__(self):
-            str_top_level = '💼' + Experience.print_experiences(self)
-            str_top_level += f"\nAssociated study : {self.associated_study.study_name}"
-            return str_top_level
-        
-    class Person:
-        def __init__(self, name:str, education:List[Education]=None, experience:List[Experience]=None, birthday:date=None) -> None:
-            self.name = name
-            self.education = education
-            self.experience = experience
-            self.age = self.calculate_age(birthday)
-
-        def calculate_age(self,birthday):  
-            time_since_birth = relativedelta(datetime.now(),birthday)
-            return time_since_birth
-
-        def __str__(self):
-            output = f"👤 {self.name}"
-            if self.age:
-                output += f" ({self.age.years} Years Old)\n\n"
-            else:
-                output += f"\n\n"
-            
-            if self.education:
-                output += "=== Education ===\n"
-                for edu in self.education:
-                    output += f"{edu}\n\n"
-            if self.experience:
-                output += "=== Experience ===\n"
-                for exp in self.experience:
-                    output += f"{exp}\n\n"
-            return output
-
-    class Publications:
-        def __init__(self, journal_name:str, title:str, doi:str,authors:List[Person] ) -> None:
-            self.journal_name = journal_name
-            self.title = title
-            self.doi = doi 
-            self.authors = authors
-        def __str__(self):
-            authors_list = ", ".join([author.name for author in self.authors])
-            return f"  {self.title}.\n    {authors_list}\n    Published in {self.journal_name}\n    DOI: {self.doi}"
-
-    class PhD(Experience):
-        def __init__(self, title:str, start_date:date, end_date:date=None, company:str=None, skills:List[Skills]=None, description:str=None, publications:List[Publications]=None) -> None:
-            super().__init__(start_date,end_date,title, company, skills, description,print_order=1)
-            self.publications = publications
-        
-        def __str__(self):  
-            str_top_level = '💼' + Experience.print_experiences(self)
-            if self.publications:
-                str_top_level += "\n\n  📃Relevant Publications\n"
-                for pub in self.publications:
-                    str_top_level += f"{pub}\n"               
-            return str_top_level
-
-    class CompareHelper:
-        def __init__(self, type, date):
-            self.type = type
-            self.date = date
-    
-        def __lt__(self, other):
-            if (self.type < other.type):
-                return True
-            elif(self.type == other.type and self.date < other.date):
-                return True
-            else:
-                return False
-            
-        def __eq__(self, other):
-            return self.type == other.type and self.date == self.date
-
-    def sort_objects(ordered_skills,sort_type,order):
-        if sort_type:
-            return sorted(ordered_skills,key=lambda s: CompareHelper(s.print_order,s.start_date),reverse=order)
-        else:
-            return sorted(ordered_skills,key=lambda s:s.start_date,reverse=order)
-
+    from cv_objects import Course,Project,Skills,Education,PhD,Job,Internship,Person,Publications,sort_objects
     return (
         Course,
         Education,
@@ -387,21 +186,14 @@ def _(
                        project_link="http://rushkock-env.eba-yi6rkpue.us-east-1.elasticbeanstalk.com/computer_vision")
 
     ruchella.experience = sort_objects([job1,job2,job3,job4,project1],1,False)
+    print(ruchella)
     return
 
 
 @app.cell
-def _(
-    Person,
-    create_Phd,
-    create_education,
-    create_internship,
-    create_job,
-    create_project,
-    create_publication,
-):
+def _(Person):
     import csv
-
+    from csv_to_objects import create_project,create_internship,create_job,create_Phd,create_education,create_project,create_publication
     people = []
     with open('data/person.csv', newline='') as pp_csv:
         persons = csv.DictReader(pp_csv)
@@ -437,117 +229,21 @@ def _(
                     all_experiences.append(create_internship(row,associated[0]))
             elif row['project_type']=='3':
                 all_experiences.append(create_project(row))  
+    people[0].experience = all_experiences
+    people[0].education = studies
+    print(people[0])
+    return (all_experiences,)
+
+
+@app.cell
+def _(all_experiences):
+    all_experiences
     return
 
 
 @app.cell
-def _(
-    Course,
-    Education,
-    Internship,
-    Job,
-    Person,
-    PhD,
-    Project,
-    Publications,
-    Skills,
-    datetime,
-):
-    def check_empty(row,y):
-        if row[y]:
-            return row[y]
-        else:
-            return None
-        
-    def create_project(row):
-        def cc(y):
-            return check_empty(row,y)
-        obj = Project(start_date=datetime.strptime(row['start_date'], '%Y-%m-%d').date())
-        obj.project_title=cc('project_title')
-        obj.project_link=cc('project_link')
-        obj.title=cc('title')
-        obj.company=cc('company')
-        obj.description=cc('description')
-        if row['end_date']:
-            obj.end_date=datetime.strptime(row['end_date'], '%Y-%m-%d').date()
-        if row['skill_type'] and row['skills']:
-            s = [s.strip(' ') for s in row['skills'].split(';')]
-            obj.skills=[Skills(i,j) for i,j in zip(s,row['skill_type'].split(';'))]
-        return obj
-    
-    def create_publication(row,existing_people):
-        authors_cleaned = [s.strip(' ').lower() for s in row['authors'].split(';')]
-        names_existing = [e.name.lower() for e in existing_people]
-        author_list = [Person(name=author) if author not in names_existing else existing_people[names_existing.index(author)] for author in authors_cleaned]
-        obj = Publications(
-            journal_name=row['journal_name'],
-            title=row['title'],
-            doi=row['doi'],
-            authors=author_list)
-        return obj
-    
-    def create_education(row):
-        def cc(y):
-            return check_empty(row,y)
-        obj = Education(degree_level=row['degree_level'],start_date=datetime.strptime(row['start_date'], '%Y-%m-%d').date())
-        obj.university_name=cc('university_name')
-        obj.study_name=cc('study_name')
-        if row['gpa']:
-            obj.gpa=float(row['gpa'])
-        if row['end_date']:
-            obj.end_date=datetime.strptime(row['end_date'], '%Y-%m-%d').date()
-        if row['courses'] and row['courses']:
-            courses=[Course(course_name=s.strip(' ')) for s in row['courses'].split(';')]
-        return obj
-
-    def create_job(row):
-        def cc(y):
-            return check_empty(row,y)
-        obj = Job(title=row['title'],start_date=datetime.strptime(row['start_date'], '%Y-%m-%d').date())
-        obj.company=cc('company')
-        obj.description=cc('description')
-        if row['end_date']:
-            obj.end_date=datetime.strptime(row['end_date'], '%Y-%m-%d').date()
-        if row['skill_type'] and row['skills']:
-            s = [s.strip(' ') for s in row['skills'].split(';')]
-            obj.skills=[Skills(i,j) for i,j in zip(s,row['skill_type'].split(';'))]            
-        return obj
-
-    def create_internship(row,education):
-        def cc(y):
-            return check_empty(row,y)
-        obj = Internship(title=row['title'],start_date=datetime.strptime(row['start_date'], '%Y-%m-%d').date(),associated_study=education)
-        obj.company=cc('company')
-        obj.description=cc('description')
-        if row['end_date']:
-            obj.end_date=datetime.strptime(row['end_date'], '%Y-%m-%d').date()   
-        if row['skill_type'] and row['skills']:
-            s = [s.strip(' ') for s in row['skills'].split(';')]
-            obj.skills=[Skills(i,j) for i,j in zip(s,row['skill_type'].split(';'))]            
-        return obj
-
-    def create_Phd(row,publications):
-        def cc(y):
-            return check_empty(row,y)
-        obj = PhD(title=row['title'],start_date=datetime.strptime(row['start_date'], '%Y-%m-%d').date())
-        obj.company=cc('company')
-        obj.description=cc('description')
-        if row['end_date']:
-            obj.end_date=datetime.strptime(row['end_date'], '%Y-%m-%d').date()   
-        if row['skill_type'] and row['skills']:
-            s = [s.strip(' ') for s in row['skills'].split(';')]
-            obj.skills=[Skills(i,j) for i,j in zip(s,row['skill_type'].split(';'))] 
-        if publications:
-            obj.publications=publications
-        return obj
-    return (
-        create_Phd,
-        create_education,
-        create_internship,
-        create_job,
-        create_project,
-        create_publication,
-    )
+def _():
+    return
 
 
 if __name__ == "__main__":
