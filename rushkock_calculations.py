@@ -123,7 +123,7 @@ def _(ABC, List, abstractmethod, date, datetime, relativedelta):
             return course_str
 
     class Education:
-        def __init__(self, degree_level:str, university_name:str=None, study_name:str=None, start_date:date=None, end_date:date=None, gpa:float=None,thesis:Project=None, courses:List[Course]=None) -> None: 
+        def __init__(self, degree_level:str, start_date:date, university_name:str=None, study_name:str=None, end_date:date=None, gpa:float=None,thesis:Project=None, courses:List[Course]=None) -> None: 
             self.degree_level = degree_level
             self.university_name = university_name
             self.study_name = study_name
@@ -387,20 +387,167 @@ def _(
                        project_link="http://rushkock-env.eba-yi6rkpue.us-east-1.elasticbeanstalk.com/computer_vision")
 
     ruchella.experience = sort_objects([job1,job2,job3,job4,project1],1,False)
-    return (ruchella,)
-
-
-@app.cell
-def _(ruchella):
-    print(ruchella)
     return
 
 
 @app.cell
-def _():
-    #def __init__(self, title:str,start_date:date,skills:List[Skills] | None, end_date:date = None,description:str=None)
-    #def __init__(self, name:str ,education:List[Education] | Education | None, experience:List[Experience] | Experience | None)
+def _(
+    Person,
+    create_Phd,
+    create_education,
+    create_internship,
+    create_job,
+    create_project,
+    create_publication,
+):
+    import csv
+
+    people = []
+    with open('data/person.csv', newline='') as pp_csv:
+        persons = csv.DictReader(pp_csv)
+        for person in persons:
+            obj = Person(name=person['name'])
+            if person['birthday']:
+                obj.birthday = person['birthday']
+            people.append(obj)
+        
+    studies = []
+    with open('data/education.csv', newline='') as edu_csv:
+        educations = csv.DictReader(edu_csv)
+        for edu in educations:
+            studies.append(create_education(edu))
+
+    articles = []
+    with open('data/publications.csv', newline='') as publications_csv:
+        publication_reader = csv.DictReader(publications_csv)
+        for pub in publication_reader:
+            articles.append(create_publication(pub, people))
+
+    with open('data/experiences.csv', newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        all_experiences = []
+        for row in reader:     
+            if row['project_type'] == '0':
+                all_experiences.append(create_job(row))
+            elif row['project_type'] == '1':
+                all_experiences.append(create_Phd(row,articles))
+            elif row['project_type'] == '2':
+                if row['associated_study']:
+                    associated = [s for s in studies if s.degree_level.lower() in row['associated_study'].lower()]
+                    all_experiences.append(create_internship(row,associated[0]))
+            elif row['project_type']=='3':
+                all_experiences.append(create_project(row))  
     return
+
+
+@app.cell
+def _(
+    Course,
+    Education,
+    Internship,
+    Job,
+    Person,
+    PhD,
+    Project,
+    Publications,
+    Skills,
+    datetime,
+):
+    def check_empty(row,y):
+        if row[y]:
+            return row[y]
+        else:
+            return None
+        
+    def create_project(row):
+        def cc(y):
+            return check_empty(row,y)
+        obj = Project(start_date=datetime.strptime(row['start_date'], '%Y-%m-%d').date())
+        obj.project_title=cc('project_title')
+        obj.project_link=cc('project_link')
+        obj.title=cc('title')
+        obj.company=cc('company')
+        obj.description=cc('description')
+        if row['end_date']:
+            obj.end_date=datetime.strptime(row['end_date'], '%Y-%m-%d').date()
+        if row['skill_type'] and row['skills']:
+            s = [s.strip(' ') for s in row['skills'].split(';')]
+            obj.skills=[Skills(i,j) for i,j in zip(s,row['skill_type'].split(';'))]
+        return obj
+    
+    def create_publication(row,existing_people):
+        authors_cleaned = [s.strip(' ').lower() for s in row['authors'].split(';')]
+        names_existing = [e.name.lower() for e in existing_people]
+        author_list = [Person(name=author) if author not in names_existing else existing_people[names_existing.index(author)] for author in authors_cleaned]
+        obj = Publications(
+            journal_name=row['journal_name'],
+            title=row['title'],
+            doi=row['doi'],
+            authors=author_list)
+        return obj
+    
+    def create_education(row):
+        def cc(y):
+            return check_empty(row,y)
+        obj = Education(degree_level=row['degree_level'],start_date=datetime.strptime(row['start_date'], '%Y-%m-%d').date())
+        obj.university_name=cc('university_name')
+        obj.study_name=cc('study_name')
+        if row['gpa']:
+            obj.gpa=float(row['gpa'])
+        if row['end_date']:
+            obj.end_date=datetime.strptime(row['end_date'], '%Y-%m-%d').date()
+        if row['courses'] and row['courses']:
+            courses=[Course(course_name=s.strip(' ')) for s in row['courses'].split(';')]
+        return obj
+
+    def create_job(row):
+        def cc(y):
+            return check_empty(row,y)
+        obj = Job(title=row['title'],start_date=datetime.strptime(row['start_date'], '%Y-%m-%d').date())
+        obj.company=cc('company')
+        obj.description=cc('description')
+        if row['end_date']:
+            obj.end_date=datetime.strptime(row['end_date'], '%Y-%m-%d').date()
+        if row['skill_type'] and row['skills']:
+            s = [s.strip(' ') for s in row['skills'].split(';')]
+            obj.skills=[Skills(i,j) for i,j in zip(s,row['skill_type'].split(';'))]            
+        return obj
+
+    def create_internship(row,education):
+        def cc(y):
+            return check_empty(row,y)
+        obj = Internship(title=row['title'],start_date=datetime.strptime(row['start_date'], '%Y-%m-%d').date(),associated_study=education)
+        obj.company=cc('company')
+        obj.description=cc('description')
+        if row['end_date']:
+            obj.end_date=datetime.strptime(row['end_date'], '%Y-%m-%d').date()   
+        if row['skill_type'] and row['skills']:
+            s = [s.strip(' ') for s in row['skills'].split(';')]
+            obj.skills=[Skills(i,j) for i,j in zip(s,row['skill_type'].split(';'))]            
+        return obj
+
+    def create_Phd(row,publications):
+        def cc(y):
+            return check_empty(row,y)
+        obj = PhD(title=row['title'],start_date=datetime.strptime(row['start_date'], '%Y-%m-%d').date())
+        obj.company=cc('company')
+        obj.description=cc('description')
+        if row['end_date']:
+            obj.end_date=datetime.strptime(row['end_date'], '%Y-%m-%d').date()   
+        if row['skill_type'] and row['skills']:
+            s = [s.strip(' ') for s in row['skills'].split(';')]
+            obj.skills=[Skills(i,j) for i,j in zip(s,row['skill_type'].split(';'))] 
+        if publications:
+            obj.publications=publications
+        return obj
+    return (
+        create_Phd,
+        create_education,
+        create_internship,
+        create_job,
+        create_project,
+        create_publication,
+    )
 
 
 if __name__ == "__main__":

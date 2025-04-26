@@ -10,7 +10,7 @@
 
 - 💬 Ask me about *Timeseries data analysis*
 
-![Static Badge](https://img.shields.io/badge/Me-v26.0.0-green")
+![Static Badge](https://img.shields.io/badge/Me-v26.8.29-yellow
 ![Static Badge](https://img.shields.io/badge/Kids-0human+1cat-green")
 
 
