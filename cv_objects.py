@@ -126,14 +126,14 @@ class Internship(Experience):
         return str_top_level
         
 class Person:
-    def __init__(self, name:str, education:List[Education]=None, experience:List[Experience]=None, birthday:date=None) -> None:
+    def __init__(self, name:str, education:List[Education]=None, experience:List[Experience]=None, date_of_birth:date=None) -> None:
         self.name = name
         self.education = education
         self.experience = experience
-        self.age = self.calculate_age(birthday)
+        self.age = self.calculate_age(date_of_birth)
 
-    def calculate_age(self,birthday):  
-        time_since_birth = relativedelta(datetime.now(),birthday)
+    def calculate_age(self,date_of_birth):  
+        time_since_birth = relativedelta(datetime.now(),date_of_birth)
         return time_since_birth
 
     def __str__(self):
