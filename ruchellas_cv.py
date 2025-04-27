@@ -1,13 +1,15 @@
 import csv
 from cv_objects import Person
 from csv_to_objects import create_project,create_internship,create_job,create_Phd,create_education,create_project,create_publication
+from conversion_functions import html_to_markdown, save_markdown
+
 people = []
 with open('data/person.csv', newline='') as pp_csv:
     persons = csv.DictReader(pp_csv)
     for person in persons:
         obj = Person(name=person['name'])
-        if person['birthday']:
-            obj.birthday = person['birthday']
+        if person['date_of_birth']:
+            obj.date_of_birth = person['date_of_birth']
         people.append(obj)
         
 studies = []
@@ -39,3 +41,5 @@ with open('data/experiences.csv', newline='') as csvfile:
 people[0].experience = all_experiences
 people[0].education = studies
 print(people[0])
+html = people[0].to_html()
+save_markdown('generated_cvs',html)
