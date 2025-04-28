@@ -27,6 +27,7 @@ with open('data/publications.csv', newline='') as publications_csv:
 with open('data/experiences.csv', newline='') as csvfile:
     reader = csv.DictReader(csvfile)
     all_experiences = []
+    theses = None
     for row in reader:     
         if row['project_type'] == '0':
             all_experiences.append(create_job(row))
@@ -37,7 +38,10 @@ with open('data/experiences.csv', newline='') as csvfile:
                 associated = [s for s in studies if s.degree_level.lower() in row['associated_study'].lower()]
                 all_experiences.append(create_internship(row,associated[0]))
         elif row['project_type']=='3':
-            all_experiences.append(create_project(row))  
+            all_experiences.append(create_project(row))
+        elif row['project_type']=='4':
+            theses.append(create_project(row))  
+            
 people[0].experience = all_experiences
 people[0].education = studies
 print(people[0])
