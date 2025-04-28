@@ -153,7 +153,7 @@ class Education:
         return edu_str
 
     def to_html(self):
-        edu_html = f"<h2 style='margin-bottom:5px;'>🎓{self.degree_level}</h2>"
+        edu_html = f"<h2 style='margin-bottom:5px;'>{self.degree_level}</h2>"
         if self.start_date and self.end_date:
             edu_html += f"<p style='font-size:small;color:gray;'>{self.start_date.strftime('%Y')} - {self.end_date.strftime('%Y')}</p>"
         if self.study_name:
@@ -221,13 +221,86 @@ class PhD(Experience):
                 phd_html += pub.to_html()
         phd_html += "</div>"
         return phd_html
+        
+class Address:
+    def __init__(self, address:str, postal_code:str, city:str, country:str, region:str):
+        self.address = address
+        self.postal_code = postal_code
+        self.city =city
+        self.country = country
+        self.region = region
+        
+    def __str__(self):
+        output = f"🏠{self.address},{self.city},{self.postal_code},{self.region},{self.country}"
+        return output
 
+class Socials:
+    def __init__(self,type:str,link:str):
+        self.type = type
+        self.link = link
+    def __str__(self):
+        return f"{self.type} : {self.link}"
+        
+class Contact_info:
+    def __init__(self,email:str,phone_number:int=None,website:str=None, address:Address=None, socials:List[Socials]=None):
+        self.email = email
+        self.phone_number = phone_number
+        self.url = website
+        self.address = address
+        self.socials = socials
+    def __str__(self):
+        output = f"📧{self.email}"
+        if self.phone_number:
+            output += f"\n📱{self.phone_number}"
+        if self.url:
+            output += f"\n🔗{self.url}"
+        if self.address:
+            output += f"\n{self.address}"
+        if self.socials:
+            output += f'\n📶Follow me on:'
+            for social in self.socials:
+               output += f"\n{social}" 
+        return output
+
+class Interests:
+    def __init__(self,name:str,description:str=None):
+        self.name = name
+        self.description = description
+    def __str__(self):
+        output = f"{self.name}"
+        if self.description:
+            output += f"\n{self.description}"
+        return output
+    def to_html(self):
+        if self.description:
+            return f"<li>{self.name}: {self.description}</li>"
+        return f"<li>{self.name}</li>"
+
+class Certificates:
+    def __init__(self,title:str,description:str,date:date,url:str=None,issuer:str=None):
+        self.title = title
+        self.description = description
+        self.date = date
+        self.url = url 
+        self.issuer = issuer
+    def __str__(self):
+        output = f"{self.title}({self.date.strftime("%m/%Y")})\n{self.description}"
+        if self.url:
+            output += f"\nLink: {self.url}"
+        if self.issuer:
+            output += f"\nIssuer: {self.issuer}"
+        return output
+    
 class Person:
-    def __init__(self, name: str, education: List[Education] = None, experience: List[Experience] = None, date_of_birth: date = None) -> None:
+    def __init__(self, name: str, education: List[Education] = None, experience: List[Experience] = None, date_of_birth: date = None,summary:str=None,contact:List[Contact_info]=None, interests:List[Interests]=None, certificates:List[Certificates]=None) -> None:
         self.name = name
         self.education = education
         self.experience = experience
+        self.summary = summary
         self.age = self.calculate_age(date_of_birth)
+        self.contact = contact
+        sef.interests = interests
+        self.certificates = certificates
 
     def calculate_age(self, date_of_birth):
         if not date_of_birth:
