@@ -44,8 +44,8 @@ def create_education(row):
         obj.gpa=float(row['gpa'])
     if row['end_date']:
         obj.end_date=datetime.strptime(row['end_date'], '%Y-%m-%d').date()
-    if row['courses'] and row['courses']:
-        courses=[Course(course_name=s.strip(' ')) for s in row['courses'].split(';')]
+    if row['courses']:
+        obj.courses=[Course(course_name=s.strip(' ')) for s in row['courses'].split(';')]
     return obj
 
 def create_job(row):
