@@ -1,4 +1,4 @@
-from cv_objects import Course,Project,Skills,Education,PhD,Job,Internship,Person,Publications,sort_objects
+from cv_objects import Course,Project,Skills,Education,PhD,Job,Internship,Person,Publications,sort_objects,Contact_info,Address,Socials,Certificates,Interests
 from datetime import date,datetime
 
 def check_empty(row,y):
@@ -88,3 +88,25 @@ def create_Phd(row,publications):
     if publications:
         obj.publications=publications
     return obj
+
+def create_person(row):
+    def cc(y):
+        return check_empty(row,y)
+    if row['date_of_birth']:
+        obj = Person(name=row['name'],date_of_birth=datetime.strptime(row['date_of_birth'], '%Y-%m-%d').date())
+    else:
+        obj = Person(name=row['name'])
+    obj.summary = cc('summary')
+    if row['email']:
+        contact_obj = Contact_info(email=row['email'])
+        contact_obj.phone_number=cc('phone_number')
+        contact_obj.website=cc('website')
+        if row['address'] and row['postal_code'] and row['city'] and row['country'] and row['region']:
+            contact_obj.address = Address(address=row['address'],postal_code=row['postal_code'],city=row['city'],country=row['country'],region=row['region'])
+        if row['socials']:
+            contact_obj.socials = [Socials(type=pp.split(':')[0], link=''.join(pp.split(':')[1:])) for pp in row['socials'].split(';')]
+    obj.contact = contact_obj
+    if row['interests']:
+        obj.interests = [Interests(name=i.split(':')[0], description=i.split(':')[1]) if len(i.split(':')) > 1 else Interests(name=i.split(':')[0]) for i in row['interests'].split(';')]
+    return obj
+            
