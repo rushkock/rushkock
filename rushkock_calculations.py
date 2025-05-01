@@ -10,13 +10,13 @@ app = marimo.App(width="medium")
 def _():
     from dateutil.relativedelta import relativedelta
     from datetime import date,datetime
-    birthday = date(1998, 7, 28)
-    def calculate_birthday(birthday):  
-        time_since_birth = relativedelta(datetime.now(),birthday)
+    date_of_birth = date(1998, 7, 28)
+    def calculate_date_of_birth(date_of_birth):  
+        time_since_birth = relativedelta(datetime.now(),date_of_birth)
         return time_since_birth
-    time_since_birth = calculate_birthday(birthday)
+    time_since_birth = calculate_date_of_birth(date_of_birth)
     version = f"{time_since_birth.years}.{time_since_birth.months}.{time_since_birth.days}-yellow"
-    return birthday, date, datetime, relativedelta, version
+    return date, date_of_birth, datetime, relativedelta, version
 
 
 @app.cell
@@ -37,7 +37,7 @@ def _():
 
 
 @app.cell
-def _(date, datetime, relativedelta, sef):
+def _(date, datetime, relativedelta):
     from typing import List
     from abc import ABC, abstractmethod
     #from dateutil.relativedelta import relativedelta
@@ -51,7 +51,7 @@ def _(date, datetime, relativedelta, sef):
         def __str__(self):
             type = 'Soft-skill' if self.type == 0 else 'Hard-skill'
             return f"{self.skill} ({type})"
-    
+
         def to_html(self):
             type = 'Soft-skill' if self.type == 0 else 'Hard-skill'
             return f"<span>{self.skill} <em style='color: gray;'>({type})</em></span>"
@@ -85,7 +85,7 @@ def _(date, datetime, relativedelta, sef):
                 exp_str += "\nRelated skills:"
                 ordered_skills = self.reorder_skills()
                 for skill in ordered_skills:
-                    exp_str += f"\n    - {skill}"
+                    exp_str += f"\n    -{skill}"
             return exp_str
 
         @abstractmethod
@@ -133,6 +133,9 @@ def _(date, datetime, relativedelta, sef):
                 str_top_level += f"Title:{self.project_title}  "
             str_top_level += Experience.print_experiences(self)
             return str_top_level
+        def to_html(self):
+            return f"<p>🏠 {self.address}, {self.city}, {self.postal_code}, {self.region}, {self.country}</p>"
+
 
         def to_html(self):
             old_title = self.title
@@ -187,7 +190,7 @@ def _(date, datetime, relativedelta, sef):
             if self.courses:
                 edu_str += "\nSpecializations/Electives:"
                 for course in self.courses:
-                    edu_str += f"\n    {course}"
+                    edu_str += f"\n    -{course}"
             if self.thesis:
                 edu_str += f"\nThesis:\n{self.thesis}"
             return edu_str
@@ -261,7 +264,7 @@ def _(date, datetime, relativedelta, sef):
                     phd_html += pub.to_html()
             phd_html += "</div>"
             return phd_html
-        
+
     class Address:
         def __init__(self, address:str, postal_code:str, city:str, country:str, region:str):
             self.address = address
@@ -269,7 +272,7 @@ def _(date, datetime, relativedelta, sef):
             self.city =city
             self.country = country
             self.region = region
-        
+
         def __str__(self):
             output = f"🏠{self.address},{self.city},{self.postal_code},{self.region},{self.country}"
             return output
@@ -280,57 +283,84 @@ def _(date, datetime, relativedelta, sef):
             self.link = link
         def __str__(self):
             return f"{self.type} : {self.link}"
-        
+        def to_html(self):
+            return f"<li><strong>{self.type}</strong>: <a href='{self.link}' target='_blank'>{self.link}</a></li>"
+
+
     class Contact_info:
         def __init__(self,email:str,phone_number:int=None,website:str=None, address:Address=None, socials:List[Socials]=None):
             self.email = email
             self.phone_number = phone_number
-            self.url = website
+            self.link = website
             self.address = address
             self.socials = socials
         def __str__(self):
             output = f"📧{self.email}"
             if self.phone_number:
                 output += f"\n📱{self.phone_number}"
-            if self.url:
-                output += f"\n🔗{self.url}"
+            if self.link:
+                output += f"\n🔗{self.link}"
             if self.address:
                 output += f"\n{self.address}"
             if self.socials:
                 output += f'\n📶Follow me on:'
                 for social in self.socials:
-                   output += f"\n{social}" 
+                   output += f"\n   -{social}" 
             return output
+        def to_html(self):
+            html = f"<p>📧 {self.email}</p>"
+            if self.phone_number:
+                html += f"<p>📱 {self.phone_number}</p>"
+            if self.link:
+                html += f"<p>🔗 <a href='{self.link}' target='_blank'>{self.link}</a></p>"
+            if self.address:
+                html += self.address.to_html()
+            if self.socials:
+                html += "<p>📶 Follow me on:</p><ul>"
+                for social in self.socials:
+                    html += social.to_html()
+                html += "</ul>"
+            return html
 
     class Interests:
         def __init__(self,name:str,description:str=None):
             self.name = name
             self.description = description
         def __str__(self):
-            output = f"{self.name}"
+            output = f"   -{self.name}"
             if self.description:
-                output += f"\n{self.description}"
+                output += f": {self.description}"
             return output
         def to_html(self):
             if self.description:
                 return f"<li>{self.name}: {self.description}</li>"
             return f"<li>{self.name}</li>"
 
+
     class Certificates:
-        def __init__(self,title:str,description:str,date:date,url:str=None,issuer:str=None):
+        def __init__(self,title:str,description:str,date:date,link:str=None,issuer:str=None):
             self.title = title
             self.description = description
             self.date = date
-            self.url = url 
+            self.link = link 
             self.issuer = issuer
         def __str__(self):
             output = f"{self.title}({self.date.strftime("%m/%Y")})\n{self.description}"
-            if self.url:
-                output += f"\nLink: {self.url}"
+            if self.link:
+                output += f"\nLink: {self.link}"
             if self.issuer:
                 output += f"\nIssuer: {self.issuer}"
             return output
-    
+        def to_html(self):
+            html = f"<div><h3>{self.title} <span style='font-size:small;color:gray;'>({self.date.strftime('%b %Y')})</span></h3>"
+            html += f"<p>{self.description}</p>"
+            if self.link:
+                html += f"<p>🔗 <a href='{self.link}' target='_blank'>Certificate Link</a></p>"
+            if self.issuer:
+                html += f"<p><strong>Issuer:</strong> {self.issuer}</p>"
+            html += "</div>"
+            return html
+
     class Person:
         def __init__(self, name: str, education: List[Education] = None, experience: List[Experience] = None, date_of_birth: date = None,summary:str=None,contact:List[Contact_info]=None, interests:List[Interests]=None, certificates:List[Certificates]=None) -> None:
             self.name = name
@@ -339,7 +369,7 @@ def _(date, datetime, relativedelta, sef):
             self.summary = summary
             self.age = self.calculate_age(date_of_birth)
             self.contact = contact
-            sef.interests = interests
+            self.interests = interests
             self.certificates = certificates
 
         def calculate_age(self, date_of_birth):
@@ -351,17 +381,30 @@ def _(date, datetime, relativedelta, sef):
         def __str__(self):
             output = f"👤 {self.name}"
             if self.age:
-                output += f" ({self.age.years} Years Old)\n\n"
+                output += f" ({self.age.years} Years Old)\n"
             else:
-                output += f"\n\n"
+                output += f"\n"
+            if self.summary:
+                output += f"{self.summary}\n"
+            if self.contact:
+                output += f"\n=== Contact Me ===\n"
+                output += f"{self.contact}\n"
+            if self.interests:
+                output += f"\n=== Interests ===\n"
+                for inter in self.interests:
+                    output += f"{inter}\n"
             if self.education:
-                output += "=== Education ===\n"
+                output += "\n=== Education ===\n"
                 for edu in self.education:
                     output += f"{edu}\n\n"
             if self.experience:
-                output += "=== Experience(s) ===\n"
+                output += "\n=== Experience(s) ===\n"
                 for exp in self.experience:
                     output += f"{exp}\n\n"
+            if self.certificates:
+                output += "\n=== Certificates ===\n"
+                for cert in self.certificates:
+                    output += f"{cert}\n"
             return output
 
         def to_html(self):
@@ -401,8 +444,11 @@ def _(date, datetime, relativedelta, sef):
         else:
             return sorted(ordered_skills, key=lambda s: s.start_date, reverse=order)
     return (
+        Address,
+        Contact_info,
         Course,
         Education,
+        Interests,
         Internship,
         Job,
         Person,
@@ -410,14 +456,18 @@ def _(date, datetime, relativedelta, sef):
         Project,
         Publications,
         Skills,
+        Socials,
         sort_objects,
     )
 
 
 @app.cell
 def _(
+    Address,
+    Contact_info,
     Course,
     Education,
+    Interests,
     Internship,
     Job,
     Person,
@@ -425,8 +475,9 @@ def _(
     Project,
     Publications,
     Skills,
-    birthday,
+    Socials,
     date,
+    date_of_birth,
     sort_objects,
 ):
     # My Bachelor
@@ -502,8 +553,18 @@ def _(
                       skills=skills_job3,
                       associated_study=bsc)
 
+    # Add my personal info
+    interests = [Interests(name='Triathlons'), Interests(name='Reading',description='I enjoy fantasy and sci-fi book as well as philosophy'), Interests(name='Weight Lifting')]
+
+    socials = [Socials(type='Github', link='https://github.com/rushkock'),Socials(type='LinkedIn', link='https://www.linkedin.com/in/ruchella-kock/')]
+
+    address = Address(address='Koningweg 198', postal_code='1928AK',city='Amsterdam', country='The Netherlands',region='South')
+    contact = Contact_info(email='test@test.com', socials=socials, website='ruchella.com',address=address)
+
+    summary = 'I am passionate about the intersection of neuroscience and machine learning. My work focuses on understanding how the brain processes real world behavior captured through (smart) devices. I primarily fulfill the role of a data scientist working with timeseries datasets.'
+
     # initialize authors for the publications
-    ruchella = Person(name="Ruchella Kock",education=[bsc,msc],birthday=birthday)
+    ruchella = Person(name="Ruchella Kock",education=[bsc,msc],date_of_birth=date_of_birth, interests=interests, summary=summary, contact=contact)
     enea = Person(name="Enea Ceolini")
     guido = Person(name="Guido PH Band")
     gijsbert = Person(name="Gijsbert Stoet")
@@ -566,8 +627,8 @@ def _(Person):
         persons = csv.DictReader(pp_csv)
         for person in persons:
             obj = Person(name=person['name'])
-            if person['birthday']:
-                obj.birthday = person['birthday']
+            if person['date_of_birth']:
+                obj.date_of_birth = person['date_of_birth']
             people.append(obj)
 
     studies = []
