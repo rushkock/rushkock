@@ -1,2 +1,2 @@
-name,date_of_birth
-Ruchella Kock, 1998-07-28
+name,date_of_birth,email,phone_number,website,address,postal_code,city,country,region,socials,interests,summary
+Ruchella Kock,2701-02-13,test@test.com,,ruchella.com,Koningweg 198,1928AK,Amsterdam,The Netherlands,South,"Github:https://github.com/rushkock;LinkedIn:https://www.linkedin.com/in/ruchella-kock/","Triathlons;Reading: I enjoy fantasy and sci-fi book as well as philosophy;Weight Lifting","I am passionate about the intersection of neuroscience and machine learning. My work focuses on understanding how the brain processes real world behavior captured through (smart) devices. I primarily fulfill the role of a data scientist working with timeseries datasets."
