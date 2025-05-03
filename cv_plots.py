@@ -11,7 +11,7 @@ import pycountry
 import plotly.express as px
 import plotly.graph_objects as go
 
-def map_location(df_person):
+def map_location(df_person,save_path=''):
     continent = getConti().getContinents(df_person.iloc[0]['country'])
     countries = {}
     iso_nums = {}
@@ -29,8 +29,10 @@ def map_location(df_person):
 
     fig = px.scatter_geo(df_pp, locations="iso_alpha", color="country",hover_name="country",size="value",projection="natural earth",scope=continent.lower(),size_max=15, color_discrete_map={df_pp.iloc[0]['country']: "#ffffff"})
     fig.show()
+    if save_path:
+        fig.write_image(save_path)
     
-def gauge_age(age):
+def gauge_age(age,save_path=''):
     fig_age = go.Figure(go.Indicator(
         mode = "gauge+number",
         value = age.years,
@@ -41,8 +43,10 @@ def gauge_age(age):
                 }
         ))
     fig_age.show()
+    if save_path:
+        fig_age.write_image(save_path)
     
-def stacked_bar_studies(df_edu,figsize,title):
+def stacked_bar_studies(df_edu,figsize,title,save_path=''):
     education_dates = [round(d.days/365) for d in df_edu['diff'].to_list()]
     cumulative_sum =  [sum(education_dates[:i+1]) for i in range(len(education_dates))]
     widths = education_dates
@@ -59,8 +63,10 @@ def stacked_bar_studies(df_edu,figsize,title):
     ax_stacked_bar.set_title(title, color='black', bbox=dict(facecolor='white', edgecolor='black', boxstyle='round', pad=0.3))
     ax_stacked_bar.set_xlabel('Years studying')
     plt.show()
+    if save_path:
+        fig_stacked_bar.savefig(save_path, bbox_inches='tight')
 
-def circle_education_courses(ctmp,figsize,title):
+def circle_education_courses(ctmp,figsize,title,save_path=''):
     fig_circ, ax_circ = plt.subplots(figsize=figsize)
 
     ax_circ.axis('off')
@@ -101,8 +107,10 @@ def circle_education_courses(ctmp,figsize,title):
 
     ax_circ.set_title(title, color='black', bbox=dict(facecolor='white', edgecolor='black', boxstyle='round', pad=0.3))
     plt.show()
+    if save_path:
+        fig_circ.savefig(save_path, bbox_inches='tight')
 
-def pie_experience_type(data,mapping,figsize,title):
+def pie_experience_type(data,mapping,figsize,title,save_path=''):
     indexes = data.index
     fig_donut, ax_donut = plt.subplots(figsize=figsize, subplot_kw=dict(aspect="equal"))
     wedges, texts = ax_donut.pie(data, wedgeprops=dict(width=0.5),colors=plt.cm.tab20c.colors[-len(data):-1], labels=[f'{round(d/sum(data)*100)}%' for d in data],labeldistance=0.6, textprops={'color':'black'})
@@ -124,8 +132,10 @@ def pie_experience_type(data,mapping,figsize,title):
 
     ax_donut.set_title(title,color='black', bbox=dict(facecolor='white', edgecolor='black', boxstyle='round', pad=0.3))
     plt.show()
+    if save_path:
+        fig_donut.savefig(save_path, bbox_inches='tight')
     
-def plot_timeline(sorted_df_exp,figsize,title):
+def timeline(sorted_df_exp,figsize,title,save_path=''):
     timeline_fig, ax_time = plt.subplots(figsize=figsize)
     for index, row in sorted_df_exp.iterrows():
         start_year = mdates.date2num(row.start_date)
@@ -142,8 +152,10 @@ def plot_timeline(sorted_df_exp,figsize,title):
     ax_time.set_xticklabels(xlabels)
     ax_time.set_yticks(range(len(sorted_df_exp)),labels=sorted_df_exp['title'])
     plt.show()
+    if save_path:
+        timeline_fig.savefig(save_path, bbox_inches='tight')
 
-def circle_experiences(df_exp,days_on_project,figsize,title):
+def circle_experiences(df_exp,days_on_project,figsize,title,save_path=''):
     circles = circlify.circlify(
         days_on_project.to_list(),
         show_enclosure=False,
@@ -172,8 +184,10 @@ def circle_experiences(df_exp,days_on_project,figsize,title):
         plt.annotate(label, (xx, yy), va='center', ha='center', bbox=dict(
             facecolor='black', edgecolor='black', boxstyle='round', pad=0))
     plt.show()
+    if save_path:
+        fig_circle.savefig(save_path, bbox_inches='tight')
     
-def tree_skills(tmp,width=900,height=700):
+def tree_skills(tmp,width=900,height=700,save_path=''):
     fig_tree = px.treemap(tmp, path=['level_1', 'level_2'], color='level_3', values='level_3',color_continuous_scale='greys',labels={'level_3': 'Days on experience'},width=width, height=height)
     fig_tree.update_layout(
      title={'text':'Experience and relevant skills',
@@ -182,8 +196,10 @@ def tree_skills(tmp,width=900,height=700):
             'xanchor': 'center',
             'yanchor': 'top'})
     fig_tree.show()
+    if save_path:
+        fig_tree.write_image(save_path)
 
-def wordcloud_skills(text,title,width=800,height=400):
+def wordcloud_skills(text,title,width=800,height=400,save_path=''):
     processed_text = WordCloud().process_text(text)
     wordcloud = WordCloud(width=width, height=height, background_color='black',color_func=lambda *args, **kwargs: 'white').fit_words(processed_text)
 
@@ -192,3 +208,5 @@ def wordcloud_skills(text,title,width=800,height=400):
     ax_wordcloud.axis('off') 
     ax_wordcloud.set_title(title, color='black', bbox=dict(facecolor='white', edgecolor='black', boxstyle='round', pad=0.3))
     plt.show()
+    if save_path:
+        fig_wordcloud.savefig(save_path, bbox_inches='tight')

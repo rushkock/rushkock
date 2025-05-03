@@ -13,7 +13,7 @@ def _():
     from datetime import datetime as dt
     from dateutil.relativedelta import relativedelta
     import pandas as pd
-    from cv_plots import circle_experiences,wordcloud_skills,tree_skills,plot_timeline,pie_experience_type,stacked_bar_studies,circle_education_courses,gauge_age,map_location
+    from cv_plots import circle_experiences,wordcloud_skills,tree_skills,timeline,pie_experience_type,stacked_bar_studies,circle_education_courses,gauge_age,map_location
     return (
         circle_education_courses,
         circle_experiences,
@@ -23,9 +23,9 @@ def _():
         mo,
         pd,
         pie_experience_type,
-        plot_timeline,
         relativedelta,
         stacked_bar_studies,
+        timeline,
         tree_skills,
         wordcloud_skills,
     )
@@ -52,7 +52,7 @@ def _(mo):
 
 @app.cell
 def _(df_person, map_location):
-    map_location(df_person)
+    map_location(df_person,save_path='images/map_location.svg')
     return
 
 
@@ -68,7 +68,7 @@ def _(df_person, dt, gauge_age, relativedelta):
         time_since_birth = relativedelta(dt.now(),date_of_birth)
         return time_since_birth
     age = calculate_date_of_birth(dt.strptime(df_person.iloc[0]['date_of_birth'],'%Y-%m-%d'))
-    gauge_age(age)
+    gauge_age(age,save_path='images/gauge_age.svg')
     return
 
 
@@ -90,7 +90,7 @@ def _(df_edu, dt, pd, stacked_bar_studies):
     df_edu['start_date'] = df_edu['start_date'].apply(func=lambda x: dt.strptime(x,'%Y-%m-%d'))
     df_edu['end_date'] = df_edu['end_date'].apply(func=lambda x: dt.strptime(x,'%Y-%m-%d') if not pd.isnull(x) else dt.now())
     df_edu['diff'] = df_edu['end_date'] - df_edu['start_date']
-    stacked_bar_studies(df_edu,(10,3),'Education across time')
+    stacked_bar_studies(df_edu,(10,3),'Education across time',save_path='images/stacked_bar_studies.svg')
     return
 
 
@@ -104,7 +104,7 @@ def _(circle_education_courses, df_edu):
 
     edu_circ = df_edu.apply(lambda x: f(x.study_name,x.courses),axis=1).to_list()
     ctmp = [{'id': 'education', 'datum': 300, 'children': edu_circ}]
-    circle_education_courses(ctmp,(15, 14),'Education and corresponding courses')
+    circle_education_courses(ctmp,(15, 14),'Education and corresponding courses',save_path='images/circle_education_courses.svg')
     return
 
 
@@ -131,7 +131,7 @@ def _(mo):
 def _(df_exp, pie_experience_type):
     data = df_exp['project_type'].value_counts()
     mapping = {0:'job',1:'PhD', 2:'Internship',3:'Project', 4:'Thesis'}
-    pie_experience_type(data,mapping,(6, 3),'Types of experiences')
+    pie_experience_type(data,mapping,(6, 3),'Types of experiences',save_path='images/pie_experience_type.svg')
     return
 
 
@@ -142,12 +142,12 @@ def _(mo):
 
 
 @app.cell
-def _(df_exp, dt, pd, plot_timeline):
+def _(df_exp, dt, pd, timeline):
     df_exp['start_date'] = df_exp['start_date'].apply(func=lambda x: dt.strptime(x,'%Y-%m-%d'))
     df_exp['end_date'] = df_exp['end_date'].apply(func=lambda x: dt.strptime(x,'%Y-%m-%d') if not pd.isnull(x) else dt.now())
     df_exp['diff'] = df_exp['end_date'] - df_exp['start_date']
     sorted_df_exp = df_exp.sort_values(by='start_date').reset_index()
-    plot_timeline(sorted_df_exp,(8,6),"Candidate's experiences across time")
+    timeline(sorted_df_exp,(8,6),"Candidate's experiences across time",save_path='images/timeline_experiences.svg')
     return
 
 
@@ -160,7 +160,7 @@ def _(mo):
 @app.cell
 def _(circle_experiences, df_exp):
     days_on_project = df_exp['diff'].apply(lambda x: round(x.days))
-    circle_experiences(df_exp,days_on_project,(8, 8),'Days spent per experience')
+    circle_experiences(df_exp,days_on_project,(8, 8),'Days spent per experience',save_path='images/circle_experiences.svg')
     return
 
 
@@ -171,13 +171,19 @@ def _(mo):
 
 
 @app.cell
-def _(df_exp, pd, tree_skills):
+def _(df_exp, pd):
     df_exp['skills'] = df_exp['skills'].apply(lambda x: x.split(';')) 
     tmp = pd.DataFrame()
     tmp['level_1'] = [title for skills, title in zip(df_exp['skills'],df_exp['title']) for _ in skills]
     tmp['level_2'] = [_ for skill in df_exp['skills'] for _ in skill]
     tmp['level_3'] = [d.days for d,skills in zip(df_exp['diff'],df_exp['skills']) for _ in skills]
-    tree_skills(tmp)
+
+    return (tmp,)
+
+
+@app.cell
+def _(tmp, tree_skills):
+    tree_skills(tmp,save_path='images/tree_skills.svg')
     return
 
 
@@ -191,7 +197,7 @@ def _(mo):
 def _(df_exp, wordcloud_skills):
     type = 'skills'
     text = ' '.join(df_exp[type].astype(str).tolist())
-    wordcloud_skills(text,'Relevant Skills')
+    wordcloud_skills(text,'Relevant Skills',save_path='images/wordcloud_skills.svg')
     return
 
 
@@ -210,8 +216,8 @@ def _(df_edu, df_exp, pd):
 
 
 @app.cell
-def _(df_merged_sorted, plot_timeline):
-    plot_timeline(df_merged_sorted,(15,6),'Full career timeline')
+def _(df_merged_sorted, timeline):
+    timeline(df_merged_sorted,(15,6),'Full career timeline',save_path='images/timeline_full.svg')
     return
 
 
