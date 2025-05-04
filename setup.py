@@ -1,7 +1,7 @@
 from setuptools import setup,find_packages
 
 setup(
-    name='OOP_CV',
+    name='rushkock',
     version='0.0.1',    
     description='An overdone installable package that displays my CV',
     url='https://github.com/rushkock/rushkock',
