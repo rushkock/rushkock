@@ -9,7 +9,7 @@ setup(
     license='BSD 2-clause',
     python_requires=">=3.10",
     packages=find_packages(),
-    install_requires=['rushkock @ git+ssh://git@github.com:rushkock/rushkock.git',
+    install_requires=['rushkock @ git+ssh://git@github.com/rushkock/rushkock.git',
         'getContinent','numpy','pandas','circlify', 'plotly','fastapi','kaleido','marimo','plotly','pycountry','pycountry-convert','python-dateutil','squarify','wordcloud','markdownify'],
     classifiers=[
         'Programming Language :: Python :: 3.10',
