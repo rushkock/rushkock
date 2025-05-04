@@ -3,25 +3,42 @@ from abc import ABC, abstractmethod
 from dateutil.relativedelta import relativedelta
 from datetime import date, datetime
 
-from typing import List
+from typing import List,Union
 from abc import ABC, abstractmethod
 #from dateutil.relativedelta import relativedelta
 #from datetime import date, datetime
 
 class Skills:
+    """ Define a skills
+    
+        - skill (str): Name of the skill.
+        - type (int): Type of skill; 0 = soft skill, 1 = hard skill.
+    """
     def __init__(self, skill: str, type: int) -> None:
         self.skill = skill
         self.type = type
 
     def __str__(self):
+        """Return a string representation of the skill."""
         type = 'Soft-skill' if self.type == 0 else 'Hard-skill'
         return f"{self.skill} ({type})"
 
     def to_html(self):
+        """Return an HTML-formatted representation of the skill."""
         type = 'Soft-skill' if self.type == 0 else 'Hard-skill'
         return f"<span>{self.skill} <em style='color: gray;'>({type})</em></span>"
 
 class Experience(ABC):
+    """ Abstract base class for different types of professional experiences.
+    
+        - start_date: The start date of the experience.
+        - end_date: The end date of the experience.
+        - title: Job or project title.
+        - company: Name of the company or organization.
+        - skills: Associated skills from Skills class.
+        - description: Description of the experience.
+        - print_order: Order used for sorting output.
+    """
     def __init__(self, start_date: date, end_date: date = None, title: str = None, company: str = None, skills: List[Skills] = None, description: str = None, print_order: int = None) -> None:
         self.start_date = start_date
         self.end_date = end_date
@@ -32,12 +49,14 @@ class Experience(ABC):
         self.print_order = print_order
 
     def reorder_skills(self):
+        """Group hard and soft skills together"""
         ordered_skills = self.skills
         if ordered_skills and len(ordered_skills) > 1:
             ordered_skills = sorted(ordered_skills, key=lambda s: s.type)
         return ordered_skills
 
     def print_experiences(self):
+        """Return a string representation of the experience."""
         date_range = f"{self.start_date.strftime('%b %Y')} – "
         date_range += self.end_date.strftime('%b %Y') if self.end_date else "Present"
         exp_str = ''
@@ -77,6 +96,10 @@ class Experience(ABC):
         return html
 
 class Job(Experience):
+    """ Represents a professional job experience.
+    
+        All arguments same as class Experience
+    """
     def __init__(self, title: str, start_date: date, end_date: date = None, company: str = None, skills: List[Skills] = None, description: str = None) -> None:
         super().__init__(start_date, end_date, title, company, skills, description, print_order=0)
 
@@ -87,6 +110,12 @@ class Job(Experience):
         return f"<div>{super().to_html()}</div>"
 
 class Project(Experience):
+    """ Represents a project experience.
+    
+        - project_title: Display name of the project.
+        - project_link: URL to the project.
+        - See Class experience for the rest of the arguments
+    """
     def __init__(self, start_date: date, title: str = None, end_date: date = None, company: str = None, skills: List[Skills] = None, description: str = None, project_title: str = None, project_link: str = None) -> None:
         super().__init__(start_date, end_date, title, company, skills, description, print_order=3)
         self.project_title = project_title
@@ -116,6 +145,11 @@ class Project(Experience):
         return proj_html
 
 class Course:
+    """ Represents a single course,specialization or elective.
+    
+        - course_name: Name of the course.
+        - description: Short description.
+    """
     def __init__(self, course_name: str, description: str = None) -> None:
         self.course_name = course_name
         self.description = description
@@ -132,6 +166,17 @@ class Course:
         return f"<li>{self.course_name}</li>"
 
 class Education:
+    """Represents an educational degree or program.
+    
+        - degree_level: Level of the degree (e.g., Bachelor's).
+        - start_date: Program start date.
+        - university_name: Name of the institution.
+        - study_name: Program name.
+        - end_date: Program end date.
+        - gpa: GPA achieved.
+        - thesis: Project object, if applicable.
+        - courses: Relevant courses as Course objects.
+    """
     def __init__(self, degree_level: str, start_date: date, university_name: str = None, study_name: str = None, end_date: date = None, gpa: float = None, thesis: Project = None, courses: List[Course] = None) -> None:
         self.degree_level = degree_level
         self.university_name = university_name
@@ -181,6 +226,11 @@ class Education:
         return edu_html
 
 class Internship(Experience):
+    """ Represents an internship experience
+    
+        - associated_study : Education Object representing the associated instituion where the internship whose curriculum the internship was a part of
+        - See Class experience for the rest of the arguments
+    """
     def __init__(self, title: str, start_date: date, associated_study: Education, end_date: date = None, company: str = None, skills: List[Skills] = None, description: str = None) -> None:
         super().__init__(start_date, end_date, title, company, skills, description, print_order=2)
         self.associated_study = associated_study
@@ -194,6 +244,13 @@ class Internship(Experience):
         return f"<div>{super().to_html()}<p>Associated study: {self.associated_study.study_name}</p></div>"
 
 class Publications:
+    """Represents an academic publication.
+    
+        - journal_name: Name of the journal.
+        - title: Title of the publication.
+        - doi: DOI / URL.
+        - authors: List of author names as Person.
+    """
     def __init__(self, journal_name: str, title: str, doi: str, authors: List['Person']) -> None:
         self.journal_name = journal_name
         self.title = title
@@ -209,6 +266,11 @@ class Publications:
         return f"<p><strong>{self.title}</strong><br><em>{authors_list}</em><br>Published in {self.journal_name}<br>DOI: <a href='https://doi.org/{self.doi}' target='_blank'>{self.doi}</a></p>"
 
 class PhD(Experience):
+    """ Represents a PhD education experience.
+
+        - publications: List of academic publications as Publications objects
+        - See Class experience for the rest of the arguments
+    """
     def __init__(self, title: str, start_date: date, end_date: date = None, company: str = None, skills: List[Skills] = None, description: str = None, publications: List[Publications] = None) -> None:
         super().__init__(start_date, end_date, title, company, skills, description, print_order=1)
         self.publications = publications
@@ -231,6 +293,14 @@ class PhD(Experience):
         return phd_html
 
 class Address:
+    """ Represents personal address
+    
+        - address: Street name and number
+        - postal_code: Postal or ZIP code
+        - city: City name
+        - country: Country name
+        - region: Region or state
+    """
     def __init__(self, address:str, postal_code:str, city:str, country:str, region:str):
         self.address = address
         self.postal_code = postal_code
@@ -245,6 +315,11 @@ class Address:
         return f"<p>🏠 {self.address}, {self.city}, {self.postal_code}, {self.region}, {self.country}</p>"
 
 class Socials:
+    """ Social media or online profile.
+    
+        - type: Name of the platform (e.g., LinkedIn, GitHub)
+        - link: URL to the profile
+    """
     def __init__(self,type:str,link:str):
         self.type = type
         self.link = link
@@ -255,6 +330,14 @@ class Socials:
 
 
 class Contact_info:
+    """ Contact information including address, phone number and socials.
+    
+        - email: Email address
+        - phone_number: phone number with area code (e.g. `+890555555`)
+        - website: URL to personal or professional website
+        - address: Address object
+        - socials: List of Socials objects
+    """
     def __init__(self,email:str,phone_number:int=None,website:str=None, address:Address=None, socials:List[Socials]=None):
         self.email = email
         self.phone_number = phone_number
@@ -290,6 +373,11 @@ class Contact_info:
         return html
 
 class Interests:
+    """ Add personal interests such as hobbies or experience unrelated interests
+    
+        - name: Name of the interest
+        - description: Short description of the interest
+    """
     def __init__(self,name:str,description:str=None):
         self.name = name
         self.description = description
@@ -305,6 +393,14 @@ class Interests:
 
 
 class Certificates:
+    """ Initialize a Certificate.
+    
+        - title: Title of the certificate
+        - description: Description of the certificate content
+        - date: Issuance date of the certificate
+        - url: URL to verify or view the certificate
+        - issuer: Issuing organization
+    """
     def __init__(self,title:str,description:str,date:date,url:str=None,issuer:str=None):
         self.title = title
         self.description = description
@@ -312,7 +408,7 @@ class Certificates:
         self.url = url 
         self.issuer = issuer
     def __str__(self):
-        output = f"{self.title}({self.date.strftime("%m/%Y")})\n{self.description}"
+        output = f"{self.title}({self.date.strftime('%m/%Y')})\n{self.description}"
         if self.url:
             output += f"\nLink: {self.url}"
         if self.issuer:
@@ -329,6 +425,17 @@ class Certificates:
         return html
 
 class Person:
+    """ Initialize a Person object representing a person and their complete professional profile.
+    
+        - name: Full name of the person
+        - education: List of Education entries
+        - experience: List of Experience entries (Job, Internship, Project, etc.)
+        - date_of_birth: Date of birth for age calculation
+        - summary: Brief personal or professional summary
+        - contact: Contact_info object
+        - interests: List of Interests
+        - certificates: List of Certificates
+    """
     def __init__(self, name:str, education:List[Education]=None, experience:List[Experience]=None, date_of_birth:date=None, summary:str=None, contact:Contact_info=None, interests:List[Interests]=None, certificates:List[Certificates]=None) -> None:
         self.name = name
         self.education = education
@@ -340,7 +447,7 @@ class Person:
         self.interests = interests
         self.certificates = certificates
 
-    def calculate_age(self, date_of_birth:date|None):
+    def calculate_age(self, date_of_birth:Union[date,None]):
         if not date_of_birth:
            return None 
         return relativedelta(datetime.now(), date_of_birth)       
@@ -402,6 +509,7 @@ class Person:
         return html
 
 class CompareHelper:
+    """Helper function to sort by type then date"""
     def __init__(self, type, date):
         self.type = type
         self.date = date
@@ -418,7 +526,8 @@ class CompareHelper:
         return self.type == other.type and self.date == other.date
 
 def sort_objects(ordered_skills, sort_type, order):
+    """ Reorder Objects by date and type or date starting from current date"""
     if sort_type:
-        return sorted(ordered_skills, key=lambda s: CompareHelper(s.print_order, s.start_date), reverse=order)
+        return sorted(enumerate(ordered_skills), key=lambda s: CompareHelper(s[1].print_order, s[1].start_date), reverse=order)
     else:
-        return sorted(ordered_skills, key=lambda s: s.start_date, reverse=order)
+        return sorted(enumerate(ordered_skills), key=lambda s: s[1].start_date, reverse=order)

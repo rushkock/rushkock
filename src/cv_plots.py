@@ -12,6 +12,11 @@ import plotly.express as px
 import plotly.graph_objects as go
 
 def map_location(df_person,save_path=''):
+    """ A geographical map marking the address (from person.csv).
+    
+        - df_person (dataframe): dataframe with country from person.csv 
+        - save_path (string): path to save the plot e.g. './map.svg'
+    """
     continent = getConti().getContinents(df_person.iloc[0]['country'])
     countries = {}
     iso_nums = {}
@@ -33,6 +38,11 @@ def map_location(df_person,save_path=''):
         fig.write_image(save_path)
     
 def gauge_age(age,save_path=''):
+    """A gauge chart representing the person’s current age (from person.csv).
+    
+        - age (int): Age as an int
+        - save_path (string): path to save the plot e.g. './gauge.svg'
+    """
     fig_age = go.Figure(go.Indicator(
         mode = "gauge+number",
         value = age.years,
@@ -47,6 +57,13 @@ def gauge_age(age,save_path=''):
         fig_age.write_image(save_path)
     
 def stacked_bar_studies(df_edu,figsize,title,save_path=''):
+    """A stacked bar chart showing duration (years) spent per study or degree (from education.csv).
+    
+        - df_edu (dataframe): containing the fields 'start_date', 'end_date', 'study_name'
+        - figsize (tuple): Figure size as (width,height)
+        - title (string): title of the plot
+        - save_path (string): path to save the plot e.g. './stackedbar.svg'
+    """
     education_dates = [round(d.days/365) for d in df_edu['diff'].to_list()]
     cumulative_sum =  [sum(education_dates[:i+1]) for i in range(len(education_dates))]
     widths = education_dates
@@ -67,6 +84,13 @@ def stacked_bar_studies(df_edu,figsize,title,save_path=''):
         fig_stacked_bar.savefig(save_path, bbox_inches='tight')
 
 def circle_education_courses(ctmp,figsize,title,save_path=''):
+    """ A circle chart associating each education entry with its listed courses (from education.csv).
+    
+        - ctmp: dictionary with data where id=name and datum=value children=list of id and datums e.g. [{'id': 'education', 'datum': 300}]
+        - figsize (tuple): Figure size as (width,height)
+        - title (string): title of the plot
+        - save_path (string): path to save the plot e.g. './stackedbar.svg'
+    """
     fig_circ, ax_circ = plt.subplots(figsize=figsize)
 
     ax_circ.axis('off')
@@ -111,6 +135,14 @@ def circle_education_courses(ctmp,figsize,title,save_path=''):
         fig_circ.savefig(save_path, bbox_inches='tight')
 
 def pie_experience_type(data,mapping,figsize,title,save_path=''):
+    """ A pie chart breaking down experiences by type (e.g., Job, Internship) (from experiences.csv).
+    
+    - data: list with counts for each project_type
+    - mapping: dict mapping of data e.g. {0:'job',1:'PhD', 2:'Internship',3:'Project', 4:'Thesis'})
+    - figsize (tuple): Figure size as (width,height)
+    - title (string): title of the plot
+    - save_path (string): path to save the plot e.g. './stackedbar.svg'
+    """
     indexes = data.index
     fig_donut, ax_donut = plt.subplots(figsize=figsize, subplot_kw=dict(aspect="equal"))
     wedges, texts = ax_donut.pie(data, wedgeprops=dict(width=0.5),colors=plt.cm.tab20c.colors[-len(data):-1], labels=[f'{round(d/sum(data)*100)}%' for d in data],labeldistance=0.6, textprops={'color':'black'})
@@ -136,6 +168,13 @@ def pie_experience_type(data,mapping,figsize,title,save_path=''):
         fig_donut.savefig(save_path, bbox_inches='tight')
     
 def timeline(sorted_df_exp,figsize,title,save_path=''):
+    """ A chronological timeline of experiences with start and end dates (from experiences.csv).
+    
+        - sorted_df_exp (dataframe): Dataframe with fields 'title', 'diff', 'start_date', 'end_date', 
+        - figsize (tuple): Figure size as (width,height)
+        - title (string): title of the plot
+        - save_path (string): path to save the plot e.g. './timeline.svg'
+    """
     timeline_fig, ax_time = plt.subplots(figsize=figsize)
     for index, row in sorted_df_exp.iterrows():
         start_year = mdates.date2num(row.start_date)
@@ -156,6 +195,14 @@ def timeline(sorted_df_exp,figsize,title,save_path=''):
         timeline_fig.savefig(save_path, bbox_inches='tight')
 
 def circle_experiences(df_exp,days_on_project,figsize,title,save_path=''):
+    """A circular (radial) chart visualizing experiences by type, title, or role (from experiences.csv).
+    
+        - df_exp (dataframe): Dataframe with fields 'title'
+        - days_on_project (list): List of days spend on project
+        - figsize (tuple): Figure size as (width,height)
+        - title (string): title of the plot
+        - save_path (string): path to save the plot e.g. './timeline.svg'
+    """
     circles = circlify.circlify(
         days_on_project.to_list(),
         show_enclosure=False,
@@ -188,6 +235,13 @@ def circle_experiences(df_exp,days_on_project,figsize,title,save_path=''):
         fig_circle.savefig(save_path, bbox_inches='tight')
     
 def tree_skills(tmp,width=900,height=700,save_path=''):
+    """A treemap showing experiences as top-level categories with nested skills (from experiences.csv).
+
+        - tmp (dataframe): with level_1,level_2,level_3 data  
+        - width (int,900): Width of the figure
+        - height (int,700): Height of the figure  
+        - save_path (string): path to save the plot e.g. './wordcloud_skills.svg'     
+    """
     fig_tree = px.treemap(tmp, path=['level_1', 'level_2'], color='level_3', values='level_3',color_continuous_scale='greys',labels={'level_3': 'Days on experience'},width=width, height=height)
     fig_tree.update_layout(
      title={'text':'Experience and relevant skills',
@@ -200,6 +254,13 @@ def tree_skills(tmp,width=900,height=700,save_path=''):
         fig_tree.write_image(save_path)
 
 def wordcloud_skills(text,title,width=800,height=400,save_path=''):
+    """A word cloud showing the most frequently used skills across experiences (from experiences.csv).
+    
+        - text (str): String with all text to be included in wordcloud
+        - figsize (tuple): Figure size as (width,height)
+        - title (string): title of the plot
+        - save_path (string): path to save the plot e.g. './wordcloud_skills.svg'    
+    """
     processed_text = WordCloud().process_text(text)
     wordcloud = WordCloud(width=width, height=height, background_color='black',color_func=lambda *args, **kwargs: 'white').fit_words(processed_text)
 

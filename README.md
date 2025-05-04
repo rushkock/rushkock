@@ -13,19 +13,19 @@ Additionally, the CV can be visualized through data visualizations.
 
 ## Getting Started
 ### Installation
-You can clone this repository or  you can install the package directly using:
+1. Create a new environment 
+2. Clone this repository and cd into the repository
+3. run: ```bash pip install -r requirements.txt```
 
-```bash
-pip install git+https://github.com/rushkock/rushkock
-``` 
+[//]: <> or you can install the package directly using: ```bash pip install git+https://github.com/rushkock/rushkock``` 
 
-## Key Features
-What you can do with the package:
-- Import CSV and create objects
-- Create data visualizations of your CV (through the CSV file) 
-- Create your CV through objects and export as HTML/markdown or JSON
+### See my CV
+To see my full CV in your command line you can run: 
+```bash 
+python3 ruchellas_cv.py
+```
 
-## Example Usage
+### Example Usage
 ### Python 
 ```python
 from cv_objects import Course,Project,Skills
@@ -38,11 +38,14 @@ thesis_bsc = Project(start_date=date(2019, 3, 1),
                  project_title="Violation of homogeneity of variances: A comparison between Welch’s t-test and the permutation test",
                  project_link="http://rushkock-env.eba-yi6rkpue.us-east-1.elasticbeanstalk.com/thesis")
 ```
-### Through the command line
-To see my full CV in your command line you can run: 
-```bash 
-python3 ruchellas_cv.py
-```
+
+
+## Key Features
+What you can do with the package:
+- Import CSV and create objects
+- Create data visualizations of your CV (through the CSV file) 
+- Create your CV through objects and export as HTML/markdown or JSON
+
 # Available classes
 | Class             | Attributes                                                                 | Methods                                          |
 |-------------------|----------------------------------------------------------------------------|--------------------------------------------------|
@@ -94,7 +97,7 @@ Filename: person.csv
 | country         | Country name                                                                                                                          |
 | region          | Region or province/state                                                                                                              |
 | socials         | Semicolon-separated list of social links with name:url (e.g., `GitHub:https://...;LinkedIn:https://...`)                                            |
-| interests       | Semicolon-separated list of interests, with optional descriptions as follows interest:description or interest1,interest2:description,  (e.g., `Reading (sci-fi and philosophy);Triathlons`) |
+| interests       | Semicolon-separated list of interests, with optional descriptions as follows interest:description or interest1,interest2:description,  (e.g., `Reading:sci-fi and philosophy;Triathlons`) |
 | summary         | Professional summary or personal statement                                                                                            |
 
 ### 🎓Education

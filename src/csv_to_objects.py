@@ -1,5 +1,5 @@
 from cv_objects import Course,Project,Skills,Education,PhD,Job,Internship,Person,Publications,sort_objects,Contact_info,Address,Socials,Certificates,Interests
-from datetime import date,datetime
+from datetime import datetime
 
 def check_empty(row,y):
     if row[y]:
@@ -8,6 +8,8 @@ def check_empty(row,y):
         return None
         
 def create_project(row):
+    """ Create object(s) Project from experiences.csv
+    """
     def cc(y):
         return check_empty(row,y)
     obj = Project(start_date=datetime.strptime(row['start_date'], '%Y-%m-%d').date())
@@ -24,6 +26,8 @@ def create_project(row):
     return obj
     
 def create_publication(row,existing_people):
+    """ Create object(s) Publications from publications.csv
+    """
     authors_cleaned = [s.strip(' ').lower() for s in row['authors'].split(';')]
     names_existing = [e.name.lower() for e in existing_people]
     author_list = [Person(name=author) if author not in names_existing else existing_people[names_existing.index(author)] for author in authors_cleaned]
@@ -35,6 +39,8 @@ def create_publication(row,existing_people):
     return obj
     
 def create_education(row):
+    """ Create object(s) Education from educations.csv
+    """
     def cc(y):
         return check_empty(row,y)
     obj = Education(degree_level=row['degree_level'],start_date=datetime.strptime(row['start_date'], '%Y-%m-%d').date())
@@ -49,6 +55,8 @@ def create_education(row):
     return obj
 
 def create_job(row):
+    """ Create object(s) Job from experiences.csv
+    """   
     def cc(y):
         return check_empty(row,y)
     obj = Job(title=row['title'],start_date=datetime.strptime(row['start_date'], '%Y-%m-%d').date())
@@ -62,6 +70,8 @@ def create_job(row):
     return obj
 
 def create_internship(row,education):
+    """ Create object(s) Internship from educations.csv
+    """
     def cc(y):
         return check_empty(row,y)
     obj = Internship(title=row['title'],start_date=datetime.strptime(row['start_date'], '%Y-%m-%d').date(),associated_study=education)
@@ -75,6 +85,8 @@ def create_internship(row,education):
     return obj
 
 def create_Phd(row,publications):
+    """ Create object(s) PhD from experiences.csv
+    """
     def cc(y):
         return check_empty(row,y)
     obj = PhD(title=row['title'],start_date=datetime.strptime(row['start_date'], '%Y-%m-%d').date())
@@ -90,6 +102,8 @@ def create_Phd(row,publications):
     return obj
 
 def create_person(row):
+    """ Create object(s) Person from person.csv
+    """
     def cc(y):
         return check_empty(row,y)
     if row['date_of_birth']:
