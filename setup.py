@@ -1,4 +1,23 @@
-from setuptools import setup
+from setuptools import setup, find_packages
+import pip 
+
+links = []
+requires = []
+
+try:
+    requirements = pip.req.parse_requirements('requirements.txt')
+except:
+    # new versions of pip requires a session
+    requirements = pip.req.parse_requirements(
+        'requirements.txt', session=pip.download.PipSession())
+
+for item in requirements:
+    if getattr(item, 'url', None):  # older pip has url
+        links.append(str(item.url))
+    if getattr(item, 'link', None): # newer pip has link
+        links.append(str(item.link))
+    if item.req:
+        requires.append(str(item.req))
 
 setup(
     name='ruchella_resume',
@@ -9,7 +28,7 @@ setup(
     license='BSD 2-clause',
     python_requires=">=3.10",
     packages=['rushkock'],
-    install_requires=['numpy'],
+    install_requires=requires,
     classifiers=[
         'Programming Language :: Python :: 3.10',
         'Intended Audience :: Recruiters',
