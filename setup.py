@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup,find_packages
 
 setup(
     name='ruchella_resume',
@@ -8,7 +8,7 @@ setup(
     author='Ruchella Kock',
     license='BSD 2-clause',
     python_requires=">=3.10",
-    packages=['rushkock'],
+    packages=find_packages(),
     install_requires=['getContinent','numpy','pandas','circlify', 'plotly','fastapi','kaleido','marimo','plotly','pycountry','pycountry-convert','python-dateutil','squarify','wordcloud','markdownify'],
     classifiers=[
         'Programming Language :: Python :: 3.10',
