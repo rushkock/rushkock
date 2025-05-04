@@ -4,13 +4,11 @@
    contain the root `toctree` directive.
 
 Home
-==============================================
-
-
+=============================================
 .. toctree::
    :titlesonly:
 
-   API Reference <api_reference>
+   API  Reference <api_reference>
 
 
 Indices and tables
