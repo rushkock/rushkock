@@ -1,7 +1,0 @@
-README.md
-setup.py
-OOP_CV.egg-info/PKG-INFO
-OOP_CV.egg-info/SOURCES.txt
-OOP_CV.egg-info/dependency_links.txt
-OOP_CV.egg-info/requires.txt
-OOP_CV.egg-info/top_level.txt
