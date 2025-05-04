@@ -1,0 +1,35 @@
+Metadata-Version: 2.4
+Name: OOP_CV
+Version: 0.0.1
+Summary: An overdone installable package that displays my CV
+Home-page: https://github.com/rushkock/rushkock
+Author: Ruchella Kock
+License: BSD 2-clause
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Intended Audience :: Recruiters
+Classifier: License :: BSD License
+Classifier: Operating System :: POSIX :: Linux
+Requires-Python: >=3.10
+Requires-Dist: rushkock@ git+ssh://git@github.com:rushkock/rushkock.git
+Requires-Dist: getContinent
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: circlify
+Requires-Dist: plotly
+Requires-Dist: fastapi
+Requires-Dist: kaleido
+Requires-Dist: marimo
+Requires-Dist: plotly
+Requires-Dist: pycountry
+Requires-Dist: pycountry-convert
+Requires-Dist: python-dateutil
+Requires-Dist: squarify
+Requires-Dist: wordcloud
+Requires-Dist: markdownify
+Dynamic: author
+Dynamic: classifier
+Dynamic: home-page
+Dynamic: license
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
