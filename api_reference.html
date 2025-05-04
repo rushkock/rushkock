@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>API Reference &#8212; OOP CV 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="_static/documentation_options.js?v=2709fde1"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Home" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Home"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">OOP CV 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">API Reference</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="api-reference">
+<h1>API Reference<a class="headerlink" href="#api-reference" title="Link to this heading">¶</a></h1>
+<section id="module-cv_objects">
+<span id="cv-objects"></span><h2>CV Objects<a class="headerlink" href="#module-cv_objects" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cv_objects.Address">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cv_objects.</span></span><span class="sig-name descname"><span class="pre">Address</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">postal_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">city</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">country</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">region</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cv_objects.Address" title="Link to this definition">¶</a></dt>
+<dd><p>Represents personal address</p>
+<ul class="simple">
+<li><p>address: Street name and number</p></li>
+<li><p>postal_code: Postal or ZIP code</p></li>
+<li><p>city: City name</p></li>
+<li><p>country: Country name</p></li>
+<li><p>region: Region or state</p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="cv_objects.Address.to_html">
+<span class="sig-name descname"><span class="pre">to_html</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cv_objects.Address.to_html" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cv_objects.Certificates">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cv_objects.</span></span><span class="sig-name descname"><span class="pre">Certificates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">issuer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cv_objects.Certificates" title="Link to this definition">¶</a></dt>
+<dd><p>Initialize a Certificate.</p>
+<ul class="simple">
+<li><p>title: Title of the certificate</p></li>
+<li><p>description: Description of the certificate content</p></li>
+<li><p>date: Issuance date of the certificate</p></li>
+<li><p>url: URL to verify or view the certificate</p></li>
+<li><p>issuer: Issuing organization</p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="cv_objects.Certificates.to_html">
+<span class="sig-name descname"><span class="pre">to_html</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cv_objects.Certificates.to_html" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cv_objects.CompareHelper">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cv_objects.</span></span><span class="sig-name descname"><span class="pre">CompareHelper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cv_objects.CompareHelper" title="Link to this definition">¶</a></dt>
+<dd><p>Helper function to sort by type then date</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cv_objects.Contact_info">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cv_objects.</span></span><span class="sig-name descname"><span class="pre">Contact_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">email</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phone_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">website</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#cv_objects.Address" title="cv_objects.Address"><span class="pre">Address</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">socials</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cv_objects.Socials" title="cv_objects.Socials"><span class="pre">Socials</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cv_objects.Contact_info" title="Link to this definition">¶</a></dt>
+<dd><p>Contact information including address, phone number and socials.</p>
+<ul class="simple">
+<li><p>email: Email address</p></li>
+<li><p>phone_number: phone number with area code (e.g. <cite>+890555555</cite>)</p></li>
+<li><p>website: URL to personal or professional website</p></li>
+<li><p>address: Address object</p></li>
+<li><p>socials: List of Socials objects</p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="cv_objects.Contact_info.to_html">
+<span class="sig-name descname"><span class="pre">to_html</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cv_objects.Contact_info.to_html" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cv_objects.Course">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cv_objects.</span></span><span class="sig-name descname"><span class="pre">Course</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">course_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cv_objects.Course" title="Link to this definition">¶</a></dt>
+<dd><p>Represents a single course,specialization or elective.</p>
+<ul class="simple">
+<li><p>course_name: Name of the course.</p></li>
+<li><p>description: Short description.</p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="cv_objects.Course.to_html">
+<span class="sig-name descname"><span class="pre">to_html</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cv_objects.Course.to_html" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cv_objects.Education">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cv_objects.</span></span><span class="sig-name descname"><span class="pre">Education</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">degree_level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">university_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">study_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gpa</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thesis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#cv_objects.Project" title="cv_objects.Project"><span class="pre">Project</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">courses</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cv_objects.Course" title="cv_objects.Course"><span class="pre">Course</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cv_objects.Education" title="Link to this definition">¶</a></dt>
+<dd><p>Represents an educational degree or program.</p>
+<ul class="simple">
+<li><p>degree_level: Level of the degree (e.g., Bachelor’s).</p></li>
+<li><p>start_date: Program start date.</p></li>
+<li><p>university_name: Name of the institution.</p></li>
+<li><p>study_name: Program name.</p></li>
+<li><p>end_date: Program end date.</p></li>
+<li><p>gpa: GPA achieved.</p></li>
+<li><p>thesis: Project object, if applicable.</p></li>
+<li><p>courses: Relevant courses as Course objects.</p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="cv_objects.Education.to_html">
+<span class="sig-name descname"><span class="pre">to_html</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cv_objects.Education.to_html" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cv_objects.Experience">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cv_objects.</span></span><span class="sig-name descname"><span class="pre">Experience</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">company</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skills</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cv_objects.Skills" title="cv_objects.Skills"><span class="pre">Skills</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_order</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cv_objects.Experience" title="Link to this definition">¶</a></dt>
+<dd><p>Abstract base class for different types of professional experiences.</p>
+<ul class="simple">
+<li><p>start_date: The start date of the experience.</p></li>
+<li><p>end_date: The end date of the experience.</p></li>
+<li><p>title: Job or project title.</p></li>
+<li><p>company: Name of the company or organization.</p></li>
+<li><p>skills: Associated skills from Skills class.</p></li>
+<li><p>description: Description of the experience.</p></li>
+<li><p>print_order: Order used for sorting output.</p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="cv_objects.Experience.print_experiences">
+<span class="sig-name descname"><span class="pre">print_experiences</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cv_objects.Experience.print_experiences" title="Link to this definition">¶</a></dt>
+<dd><p>Return a string representation of the experience.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cv_objects.Experience.reorder_skills">
+<span class="sig-name descname"><span class="pre">reorder_skills</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cv_objects.Experience.reorder_skills" title="Link to this definition">¶</a></dt>
+<dd><p>Group hard and soft skills together</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cv_objects.Experience.to_html">
+<span class="sig-name descname"><span class="pre">to_html</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cv_objects.Experience.to_html" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cv_objects.Interests">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cv_objects.</span></span><span class="sig-name descname"><span class="pre">Interests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cv_objects.Interests" title="Link to this definition">¶</a></dt>
+<dd><p>Add personal interests such as hobbies or experience unrelated interests</p>
+<ul class="simple">
+<li><p>name: Name of the interest</p></li>
+<li><p>description: Short description of the interest</p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="cv_objects.Interests.to_html">
+<span class="sig-name descname"><span class="pre">to_html</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cv_objects.Interests.to_html" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cv_objects.Internship">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cv_objects.</span></span><span class="sig-name descname"><span class="pre">Internship</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">associated_study</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#cv_objects.Education" title="cv_objects.Education"><span class="pre">Education</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">company</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skills</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cv_objects.Skills" title="cv_objects.Skills"><span class="pre">Skills</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cv_objects.Internship" title="Link to this definition">¶</a></dt>
+<dd><p>Represents an internship experience</p>
+<ul class="simple">
+<li><p>associated_study : Education Object representing the associated instituion where the internship whose curriculum the internship was a part of</p></li>
+<li><p>See Class experience for the rest of the arguments</p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="cv_objects.Internship.to_html">
+<span class="sig-name descname"><span class="pre">to_html</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cv_objects.Internship.to_html" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cv_objects.Job">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cv_objects.</span></span><span class="sig-name descname"><span class="pre">Job</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">company</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skills</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cv_objects.Skills" title="cv_objects.Skills"><span class="pre">Skills</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cv_objects.Job" title="Link to this definition">¶</a></dt>
+<dd><p>Represents a professional job experience.</p>
+<p>All arguments same as class Experience</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cv_objects.Job.to_html">
+<span class="sig-name descname"><span class="pre">to_html</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cv_objects.Job.to_html" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cv_objects.Person">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cv_objects.</span></span><span class="sig-name descname"><span class="pre">Person</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">education</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cv_objects.Education" title="cv_objects.Education"><span class="pre">Education</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">experience</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cv_objects.Experience" title="cv_objects.Experience"><span class="pre">Experience</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_of_birth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">summary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#cv_objects.Contact_info" title="cv_objects.Contact_info"><span class="pre">Contact_info</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interests</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cv_objects.Interests" title="cv_objects.Interests"><span class="pre">Interests</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">certificates</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cv_objects.Certificates" title="cv_objects.Certificates"><span class="pre">Certificates</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cv_objects.Person" title="Link to this definition">¶</a></dt>
+<dd><p>Initialize a Person object representing a person and their complete professional profile.</p>
+<ul class="simple">
+<li><p>name: Full name of the person</p></li>
+<li><p>education: List of Education entries</p></li>
+<li><p>experience: List of Experience entries (Job, Internship, Project, etc.)</p></li>
+<li><p>date_of_birth: Date of birth for age calculation</p></li>
+<li><p>summary: Brief personal or professional summary</p></li>
+<li><p>contact: Contact_info object</p></li>
+<li><p>interests: List of Interests</p></li>
+<li><p>certificates: List of Certificates</p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="cv_objects.Person.calculate_age">
+<span class="sig-name descname"><span class="pre">calculate_age</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">date_of_birth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cv_objects.Person.calculate_age" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cv_objects.Person.to_html">
+<span class="sig-name descname"><span class="pre">to_html</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cv_objects.Person.to_html" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cv_objects.PhD">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cv_objects.</span></span><span class="sig-name descname"><span class="pre">PhD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">company</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skills</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cv_objects.Skills" title="cv_objects.Skills"><span class="pre">Skills</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">publications</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cv_objects.Publications" title="cv_objects.Publications"><span class="pre">Publications</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cv_objects.PhD" title="Link to this definition">¶</a></dt>
+<dd><p>Represents a PhD education experience.</p>
+<ul class="simple">
+<li><p>publications: List of academic publications as Publications objects</p></li>
+<li><p>See Class experience for the rest of the arguments</p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="cv_objects.PhD.to_html">
+<span class="sig-name descname"><span class="pre">to_html</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cv_objects.PhD.to_html" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cv_objects.Project">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cv_objects.</span></span><span class="sig-name descname"><span class="pre">Project</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">company</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skills</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cv_objects.Skills" title="cv_objects.Skills"><span class="pre">Skills</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project_title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project_link</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cv_objects.Project" title="Link to this definition">¶</a></dt>
+<dd><p>Represents a project experience.</p>
+<ul class="simple">
+<li><p>project_title: Display name of the project.</p></li>
+<li><p>project_link: URL to the project.</p></li>
+<li><p>See Class experience for the rest of the arguments</p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="cv_objects.Project.to_html">
+<span class="sig-name descname"><span class="pre">to_html</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cv_objects.Project.to_html" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cv_objects.Publications">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cv_objects.</span></span><span class="sig-name descname"><span class="pre">Publications</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">journal_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">authors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cv_objects.Person" title="cv_objects.Person"><span class="pre">Person</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cv_objects.Publications" title="Link to this definition">¶</a></dt>
+<dd><p>Represents an academic publication.</p>
+<ul class="simple">
+<li><p>journal_name: Name of the journal.</p></li>
+<li><p>title: Title of the publication.</p></li>
+<li><p>doi: DOI / URL.</p></li>
+<li><p>authors: List of author names as Person.</p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="cv_objects.Publications.to_html">
+<span class="sig-name descname"><span class="pre">to_html</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cv_objects.Publications.to_html" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cv_objects.Skills">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cv_objects.</span></span><span class="sig-name descname"><span class="pre">Skills</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skill</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cv_objects.Skills" title="Link to this definition">¶</a></dt>
+<dd><p>Define a skills</p>
+<ul class="simple">
+<li><p>skill (str): Name of the skill.</p></li>
+<li><p>type (int): Type of skill; 0 = soft skill, 1 = hard skill.</p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="cv_objects.Skills.to_html">
+<span class="sig-name descname"><span class="pre">to_html</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cv_objects.Skills.to_html" title="Link to this definition">¶</a></dt>
+<dd><p>Return an HTML-formatted representation of the skill.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cv_objects.Socials">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cv_objects.</span></span><span class="sig-name descname"><span class="pre">Socials</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cv_objects.Socials" title="Link to this definition">¶</a></dt>
+<dd><p>Social media or online profile.</p>
+<ul class="simple">
+<li><p>type: Name of the platform (e.g., LinkedIn, GitHub)</p></li>
+<li><p>link: URL to the profile</p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="cv_objects.Socials.to_html">
+<span class="sig-name descname"><span class="pre">to_html</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cv_objects.Socials.to_html" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cv_objects.sort_objects">
+<span class="sig-prename descclassname"><span class="pre">cv_objects.</span></span><span class="sig-name descname"><span class="pre">sort_objects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ordered_skills</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cv_objects.sort_objects" title="Link to this definition">¶</a></dt>
+<dd><p>Reorder Objects by date and type or date starting from current date</p>
+</dd></dl>
+
+</section>
+<section id="module-cv_plots">
+<span id="cv-plots"></span><h2>CV plots<a class="headerlink" href="#module-cv_plots" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="cv_plots.circle_education_courses">
+<span class="sig-prename descclassname"><span class="pre">cv_plots.</span></span><span class="sig-name descname"><span class="pre">circle_education_courses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctmp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cv_plots.circle_education_courses" title="Link to this definition">¶</a></dt>
+<dd><p>A circle chart associating each education entry with its listed courses (from education.csv).</p>
+<ul class="simple">
+<li><p>ctmp: dictionary with data where id=name and datum=value children=list of id and datums e.g. [{‘id’: ‘education’, ‘datum’: 300}]</p></li>
+<li><p>figsize (tuple): Figure size as (width,height)</p></li>
+<li><p>title (string): title of the plot</p></li>
+<li><p>save_path (string): path to save the plot e.g. ‘./stackedbar.svg’</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cv_plots.circle_experiences">
+<span class="sig-prename descclassname"><span class="pre">cv_plots.</span></span><span class="sig-name descname"><span class="pre">circle_experiences</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_exp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days_on_project</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cv_plots.circle_experiences" title="Link to this definition">¶</a></dt>
+<dd><p>A circular (radial) chart visualizing experiences by type, title, or role (from experiences.csv).</p>
+<ul class="simple">
+<li><p>df_exp (dataframe): Dataframe with fields ‘title’</p></li>
+<li><p>days_on_project (list): List of days spend on project</p></li>
+<li><p>figsize (tuple): Figure size as (width,height)</p></li>
+<li><p>title (string): title of the plot</p></li>
+<li><p>save_path (string): path to save the plot e.g. ‘./timeline.svg’</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cv_plots.gauge_age">
+<span class="sig-prename descclassname"><span class="pre">cv_plots.</span></span><span class="sig-name descname"><span class="pre">gauge_age</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">age</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cv_plots.gauge_age" title="Link to this definition">¶</a></dt>
+<dd><p>A gauge chart representing the person’s current age (from person.csv).</p>
+<ul class="simple">
+<li><p>age (int): Age as an int</p></li>
+<li><p>save_path (string): path to save the plot e.g. ‘./gauge.svg’</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cv_plots.map_location">
+<span class="sig-prename descclassname"><span class="pre">cv_plots.</span></span><span class="sig-name descname"><span class="pre">map_location</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_person</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cv_plots.map_location" title="Link to this definition">¶</a></dt>
+<dd><p>A geographical map marking the address (from person.csv).</p>
+<ul class="simple">
+<li><p>df_person (dataframe): dataframe with country from person.csv</p></li>
+<li><p>save_path (string): path to save the plot e.g. ‘./map.svg’</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cv_plots.pie_experience_type">
+<span class="sig-prename descclassname"><span class="pre">cv_plots.</span></span><span class="sig-name descname"><span class="pre">pie_experience_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mapping</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cv_plots.pie_experience_type" title="Link to this definition">¶</a></dt>
+<dd><p>A pie chart breaking down experiences by type (e.g., Job, Internship) (from experiences.csv).</p>
+<ul class="simple">
+<li><p>data: list with counts for each project_type</p></li>
+<li><p>mapping: dict mapping of data e.g. {0:’job’,1:’PhD’, 2:’Internship’,3:’Project’, 4:’Thesis’})</p></li>
+<li><p>figsize (tuple): Figure size as (width,height)</p></li>
+<li><p>title (string): title of the plot</p></li>
+<li><p>save_path (string): path to save the plot e.g. ‘./stackedbar.svg’</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cv_plots.stacked_bar_studies">
+<span class="sig-prename descclassname"><span class="pre">cv_plots.</span></span><span class="sig-name descname"><span class="pre">stacked_bar_studies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_edu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cv_plots.stacked_bar_studies" title="Link to this definition">¶</a></dt>
+<dd><p>A stacked bar chart showing duration (years) spent per study or degree (from education.csv).</p>
+<ul class="simple">
+<li><p>df_edu (dataframe): containing the fields ‘start_date’, ‘end_date’, ‘study_name’</p></li>
+<li><p>figsize (tuple): Figure size as (width,height)</p></li>
+<li><p>title (string): title of the plot</p></li>
+<li><p>save_path (string): path to save the plot e.g. ‘./stackedbar.svg’</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cv_plots.timeline">
+<span class="sig-prename descclassname"><span class="pre">cv_plots.</span></span><span class="sig-name descname"><span class="pre">timeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sorted_df_exp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cv_plots.timeline" title="Link to this definition">¶</a></dt>
+<dd><p>A chronological timeline of experiences with start and end dates (from experiences.csv).</p>
+<ul class="simple">
+<li><p>sorted_df_exp (dataframe): Dataframe with fields ‘title’, ‘diff’, ‘start_date’, ‘end_date’,</p></li>
+<li><p>figsize (tuple): Figure size as (width,height)</p></li>
+<li><p>title (string): title of the plot</p></li>
+<li><p>save_path (string): path to save the plot e.g. ‘./timeline.svg’</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cv_plots.tree_skills">
+<span class="sig-prename descclassname"><span class="pre">cv_plots.</span></span><span class="sig-name descname"><span class="pre">tree_skills</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tmp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">900</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">700</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cv_plots.tree_skills" title="Link to this definition">¶</a></dt>
+<dd><p>A treemap showing experiences as top-level categories with nested skills (from experiences.csv).</p>
+<ul class="simple">
+<li><p>tmp (dataframe): with level_1,level_2,level_3 data</p></li>
+<li><p>width (int,900): Width of the figure</p></li>
+<li><p>height (int,700): Height of the figure</p></li>
+<li><p>save_path (string): path to save the plot e.g. ‘./wordcloud_skills.svg’</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cv_plots.wordcloud_skills">
+<span class="sig-prename descclassname"><span class="pre">cv_plots.</span></span><span class="sig-name descname"><span class="pre">wordcloud_skills</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">800</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">400</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cv_plots.wordcloud_skills" title="Link to this definition">¶</a></dt>
+<dd><p>A word cloud showing the most frequently used skills across experiences (from experiences.csv).</p>
+<ul class="simple">
+<li><p>text (str): String with all text to be included in wordcloud</p></li>
+<li><p>figsize (tuple): Figure size as (width,height)</p></li>
+<li><p>title (string): title of the plot</p></li>
+<li><p>save_path (string): path to save the plot e.g. ‘./wordcloud_skills.svg’</p></li>
+</ul>
+</dd></dl>
+
+</section>
+<section id="module-csv_to_objects">
+<span id="csv-to-objects"></span><h2>CSV to Objects<a class="headerlink" href="#module-csv_to_objects" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="csv_to_objects.check_empty">
+<span class="sig-prename descclassname"><span class="pre">csv_to_objects.</span></span><span class="sig-name descname"><span class="pre">check_empty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#csv_to_objects.check_empty" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="csv_to_objects.create_Phd">
+<span class="sig-prename descclassname"><span class="pre">csv_to_objects.</span></span><span class="sig-name descname"><span class="pre">create_Phd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">publications</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#csv_to_objects.create_Phd" title="Link to this definition">¶</a></dt>
+<dd><p>Create object(s) PhD from experiences.csv</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="csv_to_objects.create_education">
+<span class="sig-prename descclassname"><span class="pre">csv_to_objects.</span></span><span class="sig-name descname"><span class="pre">create_education</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#csv_to_objects.create_education" title="Link to this definition">¶</a></dt>
+<dd><p>Create object(s) Education from educations.csv</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="csv_to_objects.create_internship">
+<span class="sig-prename descclassname"><span class="pre">csv_to_objects.</span></span><span class="sig-name descname"><span class="pre">create_internship</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">education</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#csv_to_objects.create_internship" title="Link to this definition">¶</a></dt>
+<dd><p>Create object(s) Internship from educations.csv</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="csv_to_objects.create_job">
+<span class="sig-prename descclassname"><span class="pre">csv_to_objects.</span></span><span class="sig-name descname"><span class="pre">create_job</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#csv_to_objects.create_job" title="Link to this definition">¶</a></dt>
+<dd><p>Create object(s) Job from experiences.csv</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="csv_to_objects.create_person">
+<span class="sig-prename descclassname"><span class="pre">csv_to_objects.</span></span><span class="sig-name descname"><span class="pre">create_person</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#csv_to_objects.create_person" title="Link to this definition">¶</a></dt>
+<dd><p>Create object(s) Person from person.csv</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="csv_to_objects.create_project">
+<span class="sig-prename descclassname"><span class="pre">csv_to_objects.</span></span><span class="sig-name descname"><span class="pre">create_project</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#csv_to_objects.create_project" title="Link to this definition">¶</a></dt>
+<dd><p>Create object(s) Project from experiences.csv</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="csv_to_objects.create_publication">
+<span class="sig-prename descclassname"><span class="pre">csv_to_objects.</span></span><span class="sig-name descname"><span class="pre">create_publication</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">existing_people</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#csv_to_objects.create_publication" title="Link to this definition">¶</a></dt>
+<dd><p>Create object(s) Publications from publications.csv</p>
+</dd></dl>
+
+</section>
+<section id="module-main_api">
+<span id="api-csv-to-json"></span><h2>API CSV to JSON<a class="headerlink" href="#module-main_api" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="main_api.create_art">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">main_api.</span></span><span class="sig-name descname"><span class="pre">create_art</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">publications</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">UploadFile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">people</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">UploadFile</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main_api.create_art" title="Link to this definition">¶</a></dt>
+<dd><p>Upload publications.csv and create Publication objects, return as JSON</p>
+<ul class="simple">
+<li><p>Optional: Upload person.csv to add to authors to publications</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main_api.create_cv">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">main_api.</span></span><span class="sig-name descname"><span class="pre">create_cv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">experiences</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">UploadFile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">education</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">UploadFile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">people</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">UploadFile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">publications</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">UploadFile</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main_api.create_cv" title="Link to this definition">¶</a></dt>
+<dd><p>Upload experiences.csv, education.csv, person.csv, publications.csv and create full CV, return as JSON</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main_api.create_edu">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">main_api.</span></span><span class="sig-name descname"><span class="pre">create_edu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">UploadFile</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main_api.create_edu" title="Link to this definition">¶</a></dt>
+<dd><p>Upload educations.csv and create Education objects, return as JSON</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main_api.create_exp">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">main_api.</span></span><span class="sig-name descname"><span class="pre">create_exp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">experiences</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">UploadFile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">publications</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">UploadFile</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">people</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">UploadFile</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">education</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">UploadFile</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main_api.create_exp" title="Link to this definition">¶</a></dt>
+<dd><p>Upload experiences.csv and create Experience objects (e.g. Job,PhD,Internship,Project), return as JSON</p>
+<ul class="simple">
+<li><p>Optional: Upload publications.csv to add to PhD</p></li>
+<li><p>Optional: Upload person.csv to add to authors to publications</p></li>
+<li><p>Optional: Upload education.csv to add associated study to be able to create internship</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main_api.create_per">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">main_api.</span></span><span class="sig-name descname"><span class="pre">create_per</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">people_csv</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">UploadFile</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main_api.create_per" title="Link to this definition">¶</a></dt>
+<dd><p>Upload person.csv and create Person objects, return as JSON</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main_api.main">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">main_api.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main_api.main" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">API Reference</a><ul>
+<li><a class="reference internal" href="#module-cv_objects">CV Objects</a><ul>
+<li><a class="reference internal" href="#cv_objects.Address"><code class="docutils literal notranslate"><span class="pre">Address</span></code></a><ul>
+<li><a class="reference internal" href="#cv_objects.Address.to_html"><code class="docutils literal notranslate"><span class="pre">Address.to_html()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cv_objects.Certificates"><code class="docutils literal notranslate"><span class="pre">Certificates</span></code></a><ul>
+<li><a class="reference internal" href="#cv_objects.Certificates.to_html"><code class="docutils literal notranslate"><span class="pre">Certificates.to_html()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cv_objects.CompareHelper"><code class="docutils literal notranslate"><span class="pre">CompareHelper</span></code></a></li>
+<li><a class="reference internal" href="#cv_objects.Contact_info"><code class="docutils literal notranslate"><span class="pre">Contact_info</span></code></a><ul>
+<li><a class="reference internal" href="#cv_objects.Contact_info.to_html"><code class="docutils literal notranslate"><span class="pre">Contact_info.to_html()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cv_objects.Course"><code class="docutils literal notranslate"><span class="pre">Course</span></code></a><ul>
+<li><a class="reference internal" href="#cv_objects.Course.to_html"><code class="docutils literal notranslate"><span class="pre">Course.to_html()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cv_objects.Education"><code class="docutils literal notranslate"><span class="pre">Education</span></code></a><ul>
+<li><a class="reference internal" href="#cv_objects.Education.to_html"><code class="docutils literal notranslate"><span class="pre">Education.to_html()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cv_objects.Experience"><code class="docutils literal notranslate"><span class="pre">Experience</span></code></a><ul>
+<li><a class="reference internal" href="#cv_objects.Experience.print_experiences"><code class="docutils literal notranslate"><span class="pre">Experience.print_experiences()</span></code></a></li>
+<li><a class="reference internal" href="#cv_objects.Experience.reorder_skills"><code class="docutils literal notranslate"><span class="pre">Experience.reorder_skills()</span></code></a></li>
+<li><a class="reference internal" href="#cv_objects.Experience.to_html"><code class="docutils literal notranslate"><span class="pre">Experience.to_html()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cv_objects.Interests"><code class="docutils literal notranslate"><span class="pre">Interests</span></code></a><ul>
+<li><a class="reference internal" href="#cv_objects.Interests.to_html"><code class="docutils literal notranslate"><span class="pre">Interests.to_html()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cv_objects.Internship"><code class="docutils literal notranslate"><span class="pre">Internship</span></code></a><ul>
+<li><a class="reference internal" href="#cv_objects.Internship.to_html"><code class="docutils literal notranslate"><span class="pre">Internship.to_html()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cv_objects.Job"><code class="docutils literal notranslate"><span class="pre">Job</span></code></a><ul>
+<li><a class="reference internal" href="#cv_objects.Job.to_html"><code class="docutils literal notranslate"><span class="pre">Job.to_html()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cv_objects.Person"><code class="docutils literal notranslate"><span class="pre">Person</span></code></a><ul>
+<li><a class="reference internal" href="#cv_objects.Person.calculate_age"><code class="docutils literal notranslate"><span class="pre">Person.calculate_age()</span></code></a></li>
+<li><a class="reference internal" href="#cv_objects.Person.to_html"><code class="docutils literal notranslate"><span class="pre">Person.to_html()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cv_objects.PhD"><code class="docutils literal notranslate"><span class="pre">PhD</span></code></a><ul>
+<li><a class="reference internal" href="#cv_objects.PhD.to_html"><code class="docutils literal notranslate"><span class="pre">PhD.to_html()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cv_objects.Project"><code class="docutils literal notranslate"><span class="pre">Project</span></code></a><ul>
+<li><a class="reference internal" href="#cv_objects.Project.to_html"><code class="docutils literal notranslate"><span class="pre">Project.to_html()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cv_objects.Publications"><code class="docutils literal notranslate"><span class="pre">Publications</span></code></a><ul>
+<li><a class="reference internal" href="#cv_objects.Publications.to_html"><code class="docutils literal notranslate"><span class="pre">Publications.to_html()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cv_objects.Skills"><code class="docutils literal notranslate"><span class="pre">Skills</span></code></a><ul>
+<li><a class="reference internal" href="#cv_objects.Skills.to_html"><code class="docutils literal notranslate"><span class="pre">Skills.to_html()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cv_objects.Socials"><code class="docutils literal notranslate"><span class="pre">Socials</span></code></a><ul>
+<li><a class="reference internal" href="#cv_objects.Socials.to_html"><code class="docutils literal notranslate"><span class="pre">Socials.to_html()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cv_objects.sort_objects"><code class="docutils literal notranslate"><span class="pre">sort_objects()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-cv_plots">CV plots</a><ul>
+<li><a class="reference internal" href="#cv_plots.circle_education_courses"><code class="docutils literal notranslate"><span class="pre">circle_education_courses()</span></code></a></li>
+<li><a class="reference internal" href="#cv_plots.circle_experiences"><code class="docutils literal notranslate"><span class="pre">circle_experiences()</span></code></a></li>
+<li><a class="reference internal" href="#cv_plots.gauge_age"><code class="docutils literal notranslate"><span class="pre">gauge_age()</span></code></a></li>
+<li><a class="reference internal" href="#cv_plots.map_location"><code class="docutils literal notranslate"><span class="pre">map_location()</span></code></a></li>
+<li><a class="reference internal" href="#cv_plots.pie_experience_type"><code class="docutils literal notranslate"><span class="pre">pie_experience_type()</span></code></a></li>
+<li><a class="reference internal" href="#cv_plots.stacked_bar_studies"><code class="docutils literal notranslate"><span class="pre">stacked_bar_studies()</span></code></a></li>
+<li><a class="reference internal" href="#cv_plots.timeline"><code class="docutils literal notranslate"><span class="pre">timeline()</span></code></a></li>
+<li><a class="reference internal" href="#cv_plots.tree_skills"><code class="docutils literal notranslate"><span class="pre">tree_skills()</span></code></a></li>
+<li><a class="reference internal" href="#cv_plots.wordcloud_skills"><code class="docutils literal notranslate"><span class="pre">wordcloud_skills()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-csv_to_objects">CSV to Objects</a><ul>
+<li><a class="reference internal" href="#csv_to_objects.check_empty"><code class="docutils literal notranslate"><span class="pre">check_empty()</span></code></a></li>
+<li><a class="reference internal" href="#csv_to_objects.create_Phd"><code class="docutils literal notranslate"><span class="pre">create_Phd()</span></code></a></li>
+<li><a class="reference internal" href="#csv_to_objects.create_education"><code class="docutils literal notranslate"><span class="pre">create_education()</span></code></a></li>
+<li><a class="reference internal" href="#csv_to_objects.create_internship"><code class="docutils literal notranslate"><span class="pre">create_internship()</span></code></a></li>
+<li><a class="reference internal" href="#csv_to_objects.create_job"><code class="docutils literal notranslate"><span class="pre">create_job()</span></code></a></li>
+<li><a class="reference internal" href="#csv_to_objects.create_person"><code class="docutils literal notranslate"><span class="pre">create_person()</span></code></a></li>
+<li><a class="reference internal" href="#csv_to_objects.create_project"><code class="docutils literal notranslate"><span class="pre">create_project()</span></code></a></li>
+<li><a class="reference internal" href="#csv_to_objects.create_publication"><code class="docutils literal notranslate"><span class="pre">create_publication()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-main_api">API CSV to JSON</a><ul>
+<li><a class="reference internal" href="#main_api.create_art"><code class="docutils literal notranslate"><span class="pre">create_art()</span></code></a></li>
+<li><a class="reference internal" href="#main_api.create_cv"><code class="docutils literal notranslate"><span class="pre">create_cv()</span></code></a></li>
+<li><a class="reference internal" href="#main_api.create_edu"><code class="docutils literal notranslate"><span class="pre">create_edu()</span></code></a></li>
+<li><a class="reference internal" href="#main_api.create_exp"><code class="docutils literal notranslate"><span class="pre">create_exp()</span></code></a></li>
+<li><a class="reference internal" href="#main_api.create_per"><code class="docutils literal notranslate"><span class="pre">create_per()</span></code></a></li>
+<li><a class="reference internal" href="#main_api.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="index.html"
+                          title="previous chapter">Home</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/api_reference.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Home"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">OOP CV 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">API Reference</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright .
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>
